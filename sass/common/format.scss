@@ -1,0 +1,76 @@
+.body {
+	flex: 1;
+	/*background-color: white;*/
+}
+
+.bodyBack {
+	flex: 1;
+}
+
+.bodyHeader, .bodyHeaderContain {
+	height: 170;
+	flex-direction: column;
+   	justify-content: center;
+   	/*background-color: $white;*/
+}
+
+.bodyHeaderContain {
+	z-index: 20;
+}
+
+.bodyHeaderBlur {
+	position: absolute;
+	height: 170;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.bodyHeaderText {
+	font-family: $hFont;
+	font-weight: 400;
+	text-align: center;
+	align-self: center;
+	font-size: 48;
+	color: white;
+	background-color: transparent;
+}
+
+.leftCtrls {
+	position: absolute;
+	left: 50;
+	top: 50;
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+.rightCtrls {
+	position: absolute;
+	right: 50;
+	top: 50;
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+.headerLink {
+	@extend .btn;
+	z-index: 100;
+}
+
+.headerLinkText {
+	@extend .btnText;
+	font-weight: 400;
+	color: white;
+}
+
+.headerLinkIcon {
+	margin-right: 7px;
+	top: 4;
+}
+
+.inlineContain {
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+

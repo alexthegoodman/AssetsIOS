@@ -1,0 +1,34 @@
+.textInput {
+	@extend .commonText;
+	height: 65;
+	background-color: rgba(255, 255, 255, 0.7);
+	font-size: 22px;
+	font-weight: 400;
+	border-radius: 5px;
+	margin-bottom: 17;
+}
+
+/*.wrapBorder {
+	border-width: 4;
+	border-color: red;
+	border-radius: 5;
+}*/
+
+.pickerInput {
+	/*color: $warm_grey;*/
+	padding-top: 14px;
+	font-weight: 300;
+	text-align: center;
+}
+
+.inputBorder {
+	width: 400;
+	border-bottom-color: $grey;
+	border-bottom-width: 1px;
+	margin: 10 0 20 0;
+}
+
+.inlineInputs {
+	flex-direction: row;
+	flex-grow: 1;
+}

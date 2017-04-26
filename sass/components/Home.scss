@@ -1,0 +1,78 @@
+.homeBody {
+	flex: 1;
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+.bodyLeft {
+	background-color: white;
+	justify-content: center;
+}
+
+.bodyLeftBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.bodyLeftBlur {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.formHeadline {
+	@extend .commonText;
+	font-size: 42;
+	margin-bottom: 15;
+	color: white;
+	background-color: transparent;
+	font-weight: 600;
+}
+
+.formDescription {
+	@extend .commonText;
+	font-size: 22;
+	line-height: 32;
+	margin-bottom: 35;
+	color: white;
+	background-color: transparent;
+}
+
+.loginForm {
+	z-index: 10;
+}
+
+.loginBtn {
+	
+}
+
+.loginBtnContain {
+	background-color: $pink;
+	border-radius: 5px;
+	padding: 14 18;
+}
+
+.loginBtnText {
+	color: white;
+	font-size: 24;
+	align-self: center;
+}
+
+.infoHeadline {
+	@extend .commonText;
+	font-size: 32;
+	margin-bottom: 30;
+	color: $darkGrey;
+	font-weight: 600;
+}
+
+.infoPoint {
+	@extend .commonText;
+	font-size: 22;
+	line-height: 32;
+	margin-bottom: 20;
+	color: $midGrey;
+}

@@ -1,0 +1,71 @@
+.dialogContain {
+	position: absolute;
+	bottom: -50;
+	background-color: transparent;
+}
+
+.dialogCtrls {
+	background-color: rgb(247, 247, 247);
+	position: absolute;
+	top: -280;
+	height: 50;
+	z-index: 25;
+}
+
+.generalCtrls {
+	background-color: rgb(247, 247, 247);
+	/*position: absolute;
+	top: -50;*/
+	height: 50;
+	z-index: 25;
+}
+
+.pickerDialog {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 10;
+	height: 230;
+	background-color: #CDD1D8;
+}
+
+.generalDialog {
+	z-index: 10;
+	height: 230;
+	background-color: #CDD1D8;
+}
+
+.pickerItem {
+	background-color: white;
+}
+
+.doneLink {
+	position: absolute;
+	right: 5;
+	top: 3;
+	padding: 10px;
+}
+
+.doneLabel {
+	color: rgb(0, 122, 255);
+	font-size: 18px;
+}
+
+.upArrow {
+	height: 40;
+	width: 40;
+	position: absolute;
+	top: 5;
+	left: 5;
+	padding: 10px;
+}
+
+.downArrow {
+	height: 40;
+	width: 40;
+	position: absolute;
+	top: 5;
+	left: 40;
+	padding: 10px;
+}

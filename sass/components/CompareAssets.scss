@@ -1,0 +1,60 @@
+.compareAssetsBody {
+	
+}
+
+.compareAssetsContain {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+.wideCompareContain {
+	
+}
+
+.tallCompareContain {
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+.tallCompareTile {
+	/*background-color: red;*/
+}
+
+.compareBackground, .compareContain {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 5px;
+}
+
+.compareBackground {
+	border-radius: 5px;
+	overflow: visible;
+}
+
+.compareBackground {
+	overflow: visible;
+}
+
+.centerContent {
+	flex-direction: row;
+   	flex-wrap: wrap;
+	align-self: center;
+	justify-content: center;
+}
+
+.emptySelectionNote {
+	font-family: $bFont;
+	text-align: center;
+	align-self: center;
+	color: $darkGrey;
+	font-size: 48;
+	width: 1000;
+}

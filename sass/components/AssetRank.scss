@@ -1,0 +1,83 @@
+.assetRankBody {
+	position: absolute;
+	bottom: 100;
+	left: 35;
+}
+
+.rankHeadline, .noRankingsNoteText {
+	font-family: $bFont;
+	font-size: 24;
+	color: $midGrey;
+	margin-bottom: 15;
+	font-weight: 600;
+	letter-spacing: 0.2;
+}
+
+.averageRank, .userRank {
+	flex-direction: row;
+   	flex-wrap: wrap;
+   	margin-top: 30;
+   	border-radius: 50;
+   	width: 300;
+   	margin: 7px 0;
+}
+
+.averageRank {
+	background-color: $pink;
+   	border-width: 4px;
+   	border-color: $pink_d;
+}
+
+.averageRankValue, .averageRankLabel {
+	font-family: $bFont;
+	font-weight: 600;
+	color: white;
+}
+
+.averageRankValue {
+	font-size: 28;
+	text-align: center;
+}
+
+.averageCircle, .rankCircle {
+	width: 50;
+	height: 50;
+	border-radius: 50;
+	margin-right: 15;
+	padding-top: 5px;
+}
+
+.averageCircle {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+.averageRankLabel {
+	font-size: 24;
+	padding-top: 8px;
+}
+
+.userRank {
+	background-color: transparent;
+   	border-width: 4;
+   	border-color: transparent;
+}
+
+.rankValue, .rankName {
+	font-family: $bFont;
+	font-weight: 600;
+	color: $pink;
+}
+
+.rankValue {
+	font-size: 28;
+	text-align: center;
+}
+
+.rankName {
+	font-size: 24;
+	padding-top: 8px;
+}
+
+.rankCircle {
+	background-color: rgba(0, 0, 0, 0.05);
+}

@@ -1,0 +1,534 @@
+/* Breakpoints */
+/* Social */
+/* Colors */
+/* Transitions */
+/* Paddings */
+/* Shadows */
+/*@import "base/reset";
+@import "base/general";*/
+.commonText, .headline, .copy, .linkText, .textInput, .formHeadline, .formDescription, .infoHeadline, .infoPoint {
+  /*font-family: SourceSansPro-Light;*/ }
+
+.body {
+  flex: 1;
+  /*background-color: white;*/ }
+
+.bodyBack {
+  flex: 1; }
+
+.bodyHeader, .bodyHeaderContain {
+  height: 170;
+  flex-direction: column;
+  justify-content: center;
+  /*background-color: $white;*/ }
+
+.bodyHeaderContain {
+  z-index: 20; }
+
+.bodyHeaderBlur {
+  position: absolute;
+  height: 170;
+  top: 0;
+  left: 0;
+  z-index: 10; }
+
+.bodyHeaderText {
+  font-family: Azo Sans;
+  font-weight: 400;
+  text-align: center;
+  align-self: center;
+  font-size: 48;
+  color: white;
+  background-color: transparent; }
+
+.leftCtrls {
+  position: absolute;
+  left: 50;
+  top: 50;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.rightCtrls {
+  position: absolute;
+  right: 50;
+  top: 50;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.headerLink {
+  z-index: 100; }
+
+.headerLinkText {
+  font-weight: 400;
+  color: white; }
+
+.headerLinkIcon {
+  margin-right: 7px;
+  top: 4; }
+
+.inlineContain {
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.btn, .headerLink {
+  /*width: 245px;*/
+  justify-content: center;
+  border-radius: 5px;
+  padding: 7px 15px; }
+
+.btnText, .headerLinkText {
+  /* align-self on Text to open radius on Touchable */
+  align-self: center;
+  height: 45px;
+  padding-top: 8px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 28px;
+  font-family: Azo Sans; }
+
+.headline {
+  font-weight: 600;
+  align-self: center;
+  font-size: 30px;
+  justify-content: center;
+  /*color: $stormy_gray;*/ }
+
+.copy {
+  /*color: $warm_grey;*/
+  font-weight: 400;
+  font-size: 20px;
+  align-self: center;
+  text-align: center;
+  letter-spacing: -0.2; }
+
+.centerLink {
+  align-self: center;
+  justify-content: center; }
+
+.linkText {
+  font-weight: 400;
+  font-size: 18px;
+  /*color: $stormy_gray;*/
+  text-decoration-line: underline; }
+
+.textInput {
+  height: 65;
+  background-color: rgba(255, 255, 255, 0.7);
+  font-size: 22px;
+  font-weight: 400;
+  border-radius: 5px;
+  margin-bottom: 17; }
+
+/*.wrapBorder {
+	border-width: 4;
+	border-color: red;
+	border-radius: 5;
+}*/
+.pickerInput {
+  /*color: $warm_grey;*/
+  padding-top: 14px;
+  font-weight: 300;
+  text-align: center; }
+
+.inputBorder {
+  width: 400;
+  border-bottom-color: #D2D2D2;
+  border-bottom-width: 1px;
+  margin: 10 0 20 0; }
+
+.inlineInputs {
+  flex-direction: row;
+  flex-grow: 1; }
+
+.icFont {
+  font-family: 'Icon Font';
+  font-style: normal; }
+
+.dialogContain {
+  position: absolute;
+  bottom: -50;
+  background-color: transparent; }
+
+.dialogCtrls {
+  background-color: #f7f7f7;
+  position: absolute;
+  top: -280;
+  height: 50;
+  z-index: 25; }
+
+.generalCtrls {
+  background-color: #f7f7f7;
+  /*position: absolute;
+	top: -50;*/
+  height: 50;
+  z-index: 25; }
+
+.pickerDialog {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  height: 230;
+  background-color: #CDD1D8; }
+
+.generalDialog {
+  z-index: 10;
+  height: 230;
+  background-color: #CDD1D8; }
+
+.pickerItem {
+  background-color: white; }
+
+.doneLink {
+  position: absolute;
+  right: 5;
+  top: 3;
+  padding: 10px; }
+
+.doneLabel {
+  color: #007aff;
+  font-size: 18px; }
+
+.upArrow {
+  height: 40;
+  width: 40;
+  position: absolute;
+  top: 5;
+  left: 5;
+  padding: 10px; }
+
+.downArrow {
+  height: 40;
+  width: 40;
+  position: absolute;
+  top: 5;
+  left: 40;
+  padding: 10px; }
+
+.homeBody {
+  flex: 1;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.bodyLeft {
+  background-color: white;
+  justify-content: center; }
+
+.bodyLeftBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1; }
+
+.bodyLeftBlur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2; }
+
+.formHeadline {
+  font-size: 42;
+  margin-bottom: 15;
+  color: white;
+  background-color: transparent;
+  font-weight: 600; }
+
+.formDescription {
+  font-size: 22;
+  line-height: 32;
+  margin-bottom: 35;
+  color: white;
+  background-color: transparent; }
+
+.loginForm {
+  z-index: 10; }
+
+.loginBtnContain {
+  background-color: #F26A7E;
+  border-radius: 5px;
+  padding: 14 18; }
+
+.loginBtnText {
+  color: white;
+  font-size: 24;
+  align-self: center; }
+
+.infoHeadline {
+  font-size: 32;
+  margin-bottom: 30;
+  color: #747474;
+  font-weight: 600; }
+
+.infoPoint {
+  font-size: 22;
+  line-height: 32;
+  margin-bottom: 20;
+  color: #767E81; }
+
+.gridContain {
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 70px; }
+
+.tileBox {
+  height: 325;
+  /*margin-bottom: 100;*/
+  margin-bottom: 75; }
+
+.gridTile {
+  height: 300;
+  background-color: #747474;
+  justify-content: center;
+  border-radius: 5px; }
+
+.tileBackground, .tileContain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px; }
+
+.tileBackground {
+  border-radius: 5px; }
+
+.tileName {
+  font-family: Skolar Sans Latin;
+  font-weight: 400;
+  text-align: center;
+  font-size: 28px;
+  background-color: transparent;
+  color: #747474;
+  /*margin-top: 25;*/
+  top: -70;
+  left: 25;
+  font-size: 32;
+  color: white;
+  text-align: left;
+  z-index: 30; }
+
+.tileTitle {
+  font-family: Skolar Sans Latin;
+  font-weight: 400;
+  font-size: 32;
+  color: white;
+  text-align: left;
+  background-color: transparent;
+  position: absolute;
+  bottom: 25;
+  left: 25; }
+
+/*
+.tileDescription {
+	text-align: center;
+	margin-top: 15px;
+	font-size: 18px;
+	background-color: transparent;
+	color: white;
+}*/
+.projectContain {
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 0; }
+
+.viewMenu {
+  margin-right: 50; }
+
+.selectionStrip {
+  padding: 35px;
+  position: absolute;
+  bottom: 0;
+  left: 0; }
+
+.selectionTile {
+  height: 170;
+  justify-content: center;
+  margin-right: 35;
+  border-radius: 5px; }
+
+.selectionContain, .selectionBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px; }
+
+.slideTile {
+  border-radius: 5; }
+
+.slideTile, .slideContain {
+  flex-direction: row;
+  flex-wrap: wrap;
+  border-radius: 5; }
+
+.checkmarkIcon {
+  position: absolute;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 40;
+  width: 40;
+  background-color: #F26A7E;
+  z-index: 10;
+  top: 10;
+  right: 10;
+  border-radius: 50;
+  justify-content: center;
+  padding-top: 8; }
+
+.tileImage {
+  justify-content: center;
+  border-radius: 5; }
+
+.imageContain, .imageBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5; }
+
+.imageBackground {
+  overflow: visible;
+  border-radius: 5px;
+  left: auto; }
+
+.slideTileInfo {
+  padding: 35px;
+  padding-top: 100px; }
+
+.slideTileName {
+  font-family: Azo Sans;
+  text-align: left;
+  color: #747474;
+  font-size: 36; }
+
+.slideTileDescription {
+  font-family: Azo Sans;
+  text-align: left;
+  color: #767E81;
+  font-size: 22;
+  margin-top: 15; }
+
+.blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+.compareAssetsContain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.tallCompareContain {
+  flex-direction: row;
+  flex-wrap: wrap; }
+
+.tallCompareTile {
+  /*background-color: red;*/ }
+
+.compareBackground, .compareContain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px; }
+
+.compareBackground {
+  border-radius: 5px;
+  overflow: visible; }
+
+.compareBackground {
+  overflow: visible; }
+
+.centerContent {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: center; }
+
+.emptySelectionNote {
+  font-family: Skolar Sans Latin;
+  text-align: center;
+  align-self: center;
+  color: #747474;
+  font-size: 48;
+  width: 1000; }
+
+.assetRankBody {
+  position: absolute;
+  bottom: 100;
+  left: 35; }
+
+.rankHeadline, .noRankingsNoteText {
+  font-family: Skolar Sans Latin;
+  font-size: 24;
+  color: #767E81;
+  margin-bottom: 15;
+  font-weight: 600;
+  letter-spacing: 0.2; }
+
+.averageRank, .userRank {
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 30;
+  border-radius: 50;
+  width: 300;
+  margin: 7px 0; }
+
+.averageRank {
+  background-color: #F26A7E;
+  border-width: 4px;
+  border-color: #F26A7E; }
+
+.averageRankValue, .averageRankLabel {
+  font-family: Skolar Sans Latin;
+  font-weight: 600;
+  color: white; }
+
+.averageRankValue {
+  font-size: 28;
+  text-align: center; }
+
+.averageCircle, .rankCircle {
+  width: 50;
+  height: 50;
+  border-radius: 50;
+  margin-right: 15;
+  padding-top: 5px; }
+
+.averageCircle {
+  background-color: rgba(255, 255, 255, 0.1); }
+
+.averageRankLabel {
+  font-size: 24;
+  padding-top: 8px; }
+
+.userRank {
+  background-color: transparent;
+  border-width: 4;
+  border-color: transparent; }
+
+.rankValue, .rankName {
+  font-family: Skolar Sans Latin;
+  font-weight: 600;
+  color: #F26A7E; }
+
+.rankValue {
+  font-size: 28;
+  text-align: center; }
+
+.rankName {
+  font-size: 24;
+  padding-top: 8px; }
+
+.rankCircle {
+  background-color: rgba(0, 0, 0, 0.05); }

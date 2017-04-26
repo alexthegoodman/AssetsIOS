@@ -1,0 +1,105 @@
+.projectContain {
+	flex-direction: row;
+   	flex-wrap: wrap;
+   	padding-top: 0;
+}
+
+.viewMenu {
+	margin-right: 50;
+}
+
+.selectionStrip {
+	padding: 35px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+.selectionTile {
+	height: 170;
+	justify-content: center;
+	margin-right: 35;
+	border-radius: 5px;
+}
+
+.selectionContain, .selectionBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 5px;
+}
+
+.slideTile {
+	border-radius: 5;
+}
+
+.slideTile, .slideContain {
+	flex-direction: row;
+   	flex-wrap: wrap;
+   	border-radius: 5;
+}
+
+.checkmarkIcon {
+	position: absolute;
+	flex-direction: row;
+   	flex-wrap: wrap;
+	height: 40;
+	width: 40;
+	background-color: $pink;
+	z-index: 10;
+	top: 10;
+	right: 10;
+	border-radius: 50;
+	justify-content: center;
+	padding-top: 8;
+}
+
+.tileImage {
+	justify-content: center;
+	border-radius: 5;
+}
+
+.imageContain, .imageBackground {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	border-radius: 5;
+}
+
+.imageBackground {
+	overflow: visible;
+	border-radius: 5px;
+	left: auto;
+}
+
+.slideTileInfo {
+	padding: 35px;
+	padding-top: 100px;
+}
+
+.slideTileName {
+	font-family: $hFont;
+	text-align: left;
+	color: $darkGrey;
+	font-size: 36;
+}
+
+.slideTileDescription {
+	font-family: $hFont;
+	text-align: left;
+	color: $midGrey;
+	font-size: 22;
+	margin-top: 15;
+}
+
+.blur {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
