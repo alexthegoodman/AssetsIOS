@@ -1,69 +1,47 @@
 .gridContain {
-	flex-direction: row;
-   	flex-wrap: wrap;
-   	padding-top: 70px;
+	flex: 1;
 }
 
 .tileBox {
-	height: 325;
-	/*margin-bottom: 100;*/
-	margin-bottom: 75;
+	border-bottom-width: 1px;
+	border-bottom-color: $grey;
 }
 
 .gridTile {
-	height: 300;
-	background-color: $darkGrey;
-	justify-content: center;
-	border-radius: 5px;
+	height: 70;
+	padding: 10;
+	background-color: white;
 }
 
-.tileBackground, .tileContain {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	border-radius: 5px;
+.tileContain {
+	flex-direction: row;
+   	flex-wrap: wrap;
 }
 
-.tileBackground {
+.tileThumbnail {
+	height: 50;
+	width: 50;
 	border-radius: 5px;
 }
 
 .tileName {
-	font-family: $bFont;
+	font-family: $hFont;
 	font-weight: 400;
-	text-align: center;
-	font-size: 28px;
+	text-align: left;
 	background-color: transparent;
 	color: $darkGrey;
-	/*margin-top: 25;*/
-
-	top: -70;
-	left: 25;
+	margin-left: 25;
 	font-size: 32;
-	color: white;
-	text-align: left;
 	z-index: 30;
 }
 
 .tileTitle {
-	font-family: $bFont;
+	font-family: $hFont;
 	font-weight: 400;
-	font-size: 32;
-	color: white;
+	font-size: 16;
+	color: $black;
 	text-align: left;
 	background-color: transparent;
-	position: absolute;
-	bottom: 25;
-	left: 25;
+	top: 14;
+	left: 18;
 }
-
-/*
-.tileDescription {
-	text-align: center;
-	margin-top: 15px;
-	font-size: 18px;
-	background-color: transparent;
-	color: white;
-}*/

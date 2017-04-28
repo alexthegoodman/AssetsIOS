@@ -22,6 +22,9 @@ const LIKE_ASSET_COMMENT_FAILURE       = 'browse/LIKE_ASSET_COMMENT_FAILURE';
 const FETCH_PHASE_SUCCESS = 'browse/FETCH_PHASE_SUCCESS';
 const FETCH_PHASE_FAILURE = 'browse/FETCH_PHASE_FAILURE';
 
+const SET_CURRENT_PROJECT_SUCCESS = 'browse/SET_CURRENT_PROJECT_SUCCESS';
+const SET_CURRENT_PROJECT_FAILURE = 'browse/SET_CURRENT_PROJECT_FAILURE';
+
 const initialState = {
     userProjects: {},
     projectUsers: {},
@@ -31,7 +34,9 @@ const initialState = {
     gotProjectComments: {},
 	gotPhase: false,
     currentPhase: {},
-    currentPhaseData: {}
+    currentPhaseData: {},
+    currentProject: {},
+    setProject: false
 };
 
 import update from 'immutability-helper';
@@ -139,6 +144,19 @@ export default function reducer(state = initialState, action = {}) {
             nextState.gotPhase = false;
 
             return nextState;
+
+        case SET_CURRENT_PROJECT_SUCCESS:
+
+            return update(state, {
+                currentProject: { $set: action.currentProject },
+                setProject: { $set: action.setProject }
+            });
+
+        case SET_CURRENT_PROJECT_FAILURE:
+
+            return update(state, {
+                setProject: { $set: action.setProject }
+            });
 
 		default:
             return state;
@@ -249,4 +267,19 @@ export function fetchPhaseFailureAction() {
         type:   FETCH_PHASE_FAILURE,
         gotPhase: false
     }
+}
+
+export function setCurrentProjectSuccessAction(currentProject) {
+    return {
+        type:           SET_CURRENT_PROJECT_SUCCESS,
+        currentProject:   currentProject,
+        setProject:    true
+    };
+}
+
+export function setCurrentProjectFailureAction() {
+    return {
+        type:           SET_CURRENT_PROJECT_FAILURE,
+        setProject:    false
+    };
 }

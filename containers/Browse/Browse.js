@@ -136,7 +136,7 @@ export default class Browse extends Component {
         console.info('Home', gotProjects, userProjects, Object.keys(userProjects).length);
 
         let listProjects, rowCount = 3, tileMargin = 70, blurImage;
-        let totalMargin = (rowCount + 1) * tileMargin, tileWidth = (width - totalMargin) / rowCount;
+        // let totalMargin = (rowCount + 1) * tileMargin, tileWidth = (width - totalMargin) / rowCount;
         if (Object.keys(userProjects).length > 0 && gotProjects) { 
             
             let newProjects = deepcopy(userProjects);
@@ -163,19 +163,16 @@ export default class Browse extends Component {
                     }
 
                     return (
-                        <View style={[styles.tileBox,  { width: tileWidth, marginLeft: tileMargin } ]} key={'project' + projId}>
+                        <View style={[styles.tileBox, { width: width } ]} key={'project' + projId}>
                             <TouchableHighlight onPress={() => this.viewProject(projId)} data-project-id={projId} style={[styles.gridTile]} 
-                            activeOpacity={1} underlayColor="#F2F2F2" 
-                            tvParallaxProperties={smallHoverProps} hasTVPreferredFocus={focus}>
-                                <View style={styles.tileContain} shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.3} shadowRadius={10}>
+                            activeOpacity={1} underlayColor="#F2F2F2">
+                                <View style={styles.tileContain}>
                                     <Image 
-                                        style={styles.tileBackground} 
+                                        style={styles.tileThumbnail} 
                                         resizeMode="cover" 
                                         source={{ uri: project['phaseImagesData'][0]['image_url'] }} 
-                                    >
-                                        <Text style={styles.tileTitle}>{project['project_name']}</Text>
-                                    </Image>
-                                    
+                                    />
+                                    <Text style={styles.tileTitle}>{project['project_name']} {project['project_id']}</Text>
                                 </View>
                             </TouchableHighlight>
                             {/*<Text style={styles.tileName}>{project['project_name']}</Text>*/}
@@ -189,16 +186,16 @@ export default class Browse extends Component {
 
         return (
             <View style={styles.body}>
-                <Image style={{ zIndex: 1, position: 'absolute', width: width, height: 170 }} source={{ uri: blurImage }} />
+                <Image style={{ zIndex: 1, position: 'absolute', width: width, height: 80 }} source={{ uri: blurImage }} />
                 
                 <View style={[styles.body, { zIndex: 4 }]}>
                     <SimpleHeader
-                        title={'Browse Projects'}
+                        title={'Browse'}
                         leftCtrls={(
                             <TouchableHighlight onPress={this.logOut} style={styles.headerLink} 
-                            activeOpacity={1} underlayColor="rgba(255,255,255,0.1)" tvParallaxProperties={smallHoverProps} hasTVPreferredFocus={false}>
+                            activeOpacity={1} underlayColor="rgba(255,255,255,0.1)">
                                 <View style={styles.inlineContain}>
-                                    <Back1 width={50} height={50} color="white" />
+                                    <View style={styles.headerLinkIcon}><Back1 width={35} height={35} color="white" /></View>
                                     <Text style={styles.headerLinkText}>Log Out</Text>
                                 </View>
                             </TouchableHighlight>

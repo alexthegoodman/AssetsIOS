@@ -11,7 +11,8 @@ import {
     View,
     Navigator,
     AsyncStorage,
-    Linking
+    Linking,
+    StatusBar
 } from 'react-native';
 
 import Home             from '../Home/Home';
@@ -72,6 +73,7 @@ export default class App extends Component {
 
         return (
             <View style={styles.body}>
+                <StatusBar barStyle="light-content" />
                 {this.props.children}
             </View>
         )

@@ -1,0 +1,76 @@
+.assetCommentsContain {
+	
+}
+
+.assetComments {
+	
+}
+
+.commentsCtrl {
+	height: 40;
+	background-color: #E5E5E5;
+	border-bottom-width: 1px;
+	border-bottom-color: $grey;
+}
+
+.commentList {
+	
+}
+
+.commentItem {
+	padding: 25;
+	border-bottom-width: 1px;
+	border-bottom-color: $grey;
+}
+
+.hiddenCommentItem {
+	background-color: $lightGrey;
+}
+
+.commentMeta {
+
+}
+
+.commentTitle {
+	@extend .commonText;
+	color: $black;
+	font-size: 18;
+	margin-bottom: 4;
+}
+
+.commentDate {
+	@extend .commonText;
+	color: $midGrey;
+	font-size: 16;
+	margin-bottom: 7;
+}
+
+.commentContent {
+	padding: 0;
+	margin: 0;
+	flex-direction: row;
+   	flex-wrap: wrap;
+   	background-color: $lightGrey;
+}
+
+p {
+	@extend .commonText;
+	padding: 0;
+	margin: 0;
+	color: $darkGrey;
+	font-size: 14;
+}
+
+.commentForm {
+
+}
+
+.noComments {
+	padding: 25;
+}
+
+.noCommentsText {
+	font-family: $bFont;
+	color: $midGrey;
+	font-size: 18;
+}

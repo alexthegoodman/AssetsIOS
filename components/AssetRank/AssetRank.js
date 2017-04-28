@@ -31,7 +31,9 @@ export default class AssetRank extends Component {
 
         super();
 
-        this.state = {}
+        this.state = {
+            rankHeight: 50
+        }
 
     }
 
@@ -48,7 +50,7 @@ export default class AssetRank extends Component {
         let { assetData, projectUsers } = this.props;
         
         // inspired by web app AssetRank
-        let rankData = assetData['image_rank'];
+        let rankData = JSON.parse(assetData['image_rank']);
         let total = 0, count = 0, average, averageRank, rankList, firstname, lastname, thisUser, thisUserHash;
         
         for (let kee in rankData[0]) {
@@ -97,16 +99,19 @@ export default class AssetRank extends Component {
                     fullName = fullName.substr(0, 15) + '...';
                 }
 
-                return <View key={'rankItem' + thisUserHash + assetData['image_id']} style={styles.userRank}><View style={styles.rankCircle}><Text style={styles.rankValue}>{rank}</Text></View><Text style={styles.rankName}>{fullName}</Text></View>;
+                return <View key={'rankItem' + thisUserHash + assetData['image_id']} style={styles.userRank}><View style={styles.rankContain}><Text style={styles.rankValue}>{rank}</Text></View><Text style={styles.rankName}>{fullName}</Text></View>;
             
             }
         });
 
         return (
-            <View style={styles.assetRankBody}>
-                <Text style={styles.rankHeadline}>LATEST RANKINGS</Text>
-                {averageRank}
-                {rankList}
+            <View style={[styles.assetRankBody, { height: 50 } ]}>
+                <View style={styles.averageRank}>
+                    {averageRank}
+                </View>
+                <View style={styles.rankList}>
+                    {rankList}
+                </View>
             </View>
         );
     }

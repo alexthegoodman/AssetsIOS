@@ -7,6 +7,7 @@ import App  from './App/App';
 import Home from './Home/Home';
 import Browse from './Browse/Browse';
 import Project from './Project/Project';
+import Asset from './Asset/Asset';
 
 export default (store) => {
 
@@ -29,6 +30,8 @@ export default (store) => {
             <Route path="browse" component={Browse} />
 
             <Route path="project/:projectId" component={Project} />
+
+            <Route path="asset/:assetId" component={Asset} />
 
         </StackRoute>
     );

@@ -21,37 +21,7 @@ function formatUrl(path) {
 }
 
 export default class ApiClient {
-
-    // constructor(req) {
-    //     methods.forEach((method) =>
-    //         this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
-                
-    //             // superagent is a nice HTTP request / AJAX library
-    //             // replace with Fetch API down the line?
-    //             const request = superagent[method](formatUrl(path));
-
-    //             if (params && Object.keys(params).length > 0) {
-    //                 request.query(params);
-    //             }
-
-    //             // if (__SERVER__ && req.get('cookie')) {
-    //             //     request.set('cookie', req.get('cookie'));
-    //             // }
-
-    //             console.info(formatUrl(path), data, params);
-
-    //             if (data) {
-    //                 // send technically only attaches data to request
-    //                 request.send(data);
-    //             }
-
-    //             // end() technically sends the request, w/callback
-    //             // Promise API either "rejects" or "resolves" the promise
-    //             request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
-    //         })
-    //     );
-    // }
-
+    
     constructor() {}
 
     get(endpoint, params, method = 'GET') {

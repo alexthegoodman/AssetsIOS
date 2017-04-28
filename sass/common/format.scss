@@ -8,10 +8,9 @@
 }
 
 .bodyHeader, .bodyHeaderContain {
-	height: 170;
+	height: 80;
 	flex-direction: column;
    	justify-content: center;
-   	/*background-color: $white;*/
 }
 
 .bodyHeaderContain {
@@ -20,34 +19,35 @@
 
 .bodyHeaderBlur {
 	position: absolute;
-	height: 170;
+	height: 80;
 	top: 0;
 	left: 0;
 	z-index: 10;
 }
 
 .bodyHeaderText {
+	top: 5;
 	font-family: $hFont;
 	font-weight: 400;
 	text-align: center;
 	align-self: center;
-	font-size: 48;
+	font-size: 18;
 	color: white;
 	background-color: transparent;
 }
 
 .leftCtrls {
 	position: absolute;
-	left: 50;
-	top: 50;
+	left: 0;
+	top: 20;
 	flex-direction: row;
    	flex-wrap: wrap;
 }
 
 .rightCtrls {
 	position: absolute;
-	right: 50;
-	top: 50;
+	right: 0;
+	top: 20;
 	flex-direction: row;
    	flex-wrap: wrap;
 }
@@ -64,8 +64,11 @@
 }
 
 .headerLinkIcon {
-	margin-right: 7px;
-	top: 4;
+	/*background-color: red;*/
+	width: 35;
+	height: 35;
+	/*margin-right: 4px;*/
+	top: 0;
 }
 
 .inlineContain {

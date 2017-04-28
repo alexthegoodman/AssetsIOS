@@ -1,11 +1,12 @@
 .textInput {
 	@extend .commonText;
-	height: 65;
+	height: 45;
 	background-color: rgba(255, 255, 255, 0.7);
-	font-size: 22px;
+	font-size: 18px;
 	font-weight: 400;
 	border-radius: 5px;
-	margin-bottom: 17;
+	margin-bottom: 14;
+	padding: 0 12px;
 }
 
 /*.wrapBorder {

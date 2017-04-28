@@ -4,11 +4,6 @@
    	flex-wrap: wrap;
 }
 
-.bodyLeft {
-	background-color: white;
-	justify-content: center;
-}
-
 .bodyLeftBackground {
 	position: absolute;
 	top: 0;
@@ -23,9 +18,16 @@
 	z-index: 2;
 }
 
+.bodyTop {
+	z-index: 10;
+	/*background-color: red;*/
+	padding: 20px 30px 0 30px;
+	margin-top: 70px;
+}
+
 .formHeadline {
 	@extend .commonText;
-	font-size: 42;
+	font-size: 28;
 	margin-bottom: 15;
 	color: white;
 	background-color: transparent;
@@ -34,15 +36,15 @@
 
 .formDescription {
 	@extend .commonText;
-	font-size: 22;
-	line-height: 32;
+	font-size: 18;
+	line-height: 24;
 	margin-bottom: 35;
 	color: white;
 	background-color: transparent;
 }
 
 .loginForm {
-	z-index: 10;
+	
 }
 
 .loginBtn {
@@ -57,22 +59,29 @@
 
 .loginBtnText {
 	color: white;
-	font-size: 24;
+	font-size: 18;
 	align-self: center;
+}
+
+.infoSection {
+	z-index: 10;
+	padding: 0 30px;
 }
 
 .infoHeadline {
 	@extend .commonText;
-	font-size: 32;
-	margin-bottom: 30;
-	color: $darkGrey;
+	font-size: 28;
+	margin-bottom: 15;
+	color: white;
 	font-weight: 600;
+	background-color: transparent;
 }
 
 .infoPoint {
 	@extend .commonText;
-	font-size: 22;
-	line-height: 32;
-	margin-bottom: 20;
-	color: $midGrey;
+	font-size: 18;
+	line-height: 28;
+	margin-bottom: 10;
+	color: white;
+	background-color: transparent;
 }

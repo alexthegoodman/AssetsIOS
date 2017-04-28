@@ -78,9 +78,7 @@ export default class CompareAssets extends Component {
                 if (typeof selectedAssets[image['image_id']] != 'undefined' && selectedAssets[image['image_id']]) {
                     return (
                         <View style={tileStyle} key={'compareAsset' + image['image_id']} 
-                            activeOpacity={1} underlayColor="#F2F2F2" 
-                            tvParallaxProperties={hoverProps} hasTVPreferredFocus={false}
-                            >
+                            activeOpacity={1} underlayColor="#F2F2F2">
                             <View style={styles.compareContain}>
                                 <View style={internalTileStyle}>
                                     <Image style={styles.compareBackground} shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.4} shadowRadius={8} resizeMode="contain" source={{ uri: image['image_url'] }} />

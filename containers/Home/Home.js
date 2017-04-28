@@ -17,7 +17,8 @@ import {
     TouchableHighlight,
     Image,
     Dimensions,
-    TextInput
+    TextInput,
+    StatusBar
 } from 'react-native';
 
 let { width, height } = Dimensions.get('window');
@@ -134,10 +135,11 @@ export default class Home extends Component {
 
         return (
             <View style={styles.homeBody}>
-                <View style={[styles.bodyLeft, { width: width }]}>
-                    {/*<Image style={[styles.bodyLeftBackground, { width: leftSize, height: height }]} resizeMode="cover" source={require('../../img/backs/demo.jpg')}></Image>
-                    <BlurView blurType="dark" blurAmount={10} style={[styles.bodyLeftBlur, { width: (width / 3) * 2, height: height }]} />*/}
-
+                <StatusBar barStyle="light-content" />
+                <Image style={[styles.bodyLeftBackground, { width: width, height: height }]} resizeMode="cover" source={require('../../img/backs/demo.jpg')}></Image>
+                <BlurView blurType="dark" blurAmount={10} style={[styles.bodyLeftBlur, { width: width, height: height }]} />
+                
+                <View style={[styles.bodyTop, { width: width, height: 350 }]}>
                     <View style={styles.loginForm}>
                         <Text style={styles.formHeadline}>Assets</Text>
                         <Text style={styles.formDescription}>Create your account online or access your projects by logging in below.</Text>
@@ -177,9 +179,9 @@ export default class Home extends Component {
                     </View>
                 </View>
                 <View style={styles.infoSection}>
-                    <Text style={styles.infoHeadline}>Professional Presentations</Text>
-                    <Text style={styles.infoPoint}>Meetings with clients and team members will be more productive - everyone can see</Text>
-                    <Text style={[styles.infoPoint, { marginBottom: 0 }]}>Presentations look professional and enhance your value much like a good paper - and it's free</Text>
+                    <Text style={styles.infoHeadline}>Mobile Collaboration</Text>
+                    <Text style={styles.infoPoint}>Browse projects and rank concepts wherever you are</Text>
+                    <Text style={[styles.infoPoint, { marginBottom: 0 }]}>Manage your team and keep up with your clients</Text>
                 </View>
             </View>
         );
