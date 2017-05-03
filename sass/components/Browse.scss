@@ -35,6 +35,12 @@
 	z-index: 30;
 }
 
+.tileInfo {
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 12;
+}
+
 .tileTitle {
 	font-family: $hFont;
 	font-weight: 400;
@@ -42,6 +48,13 @@
 	color: $black;
 	text-align: left;
 	background-color: transparent;
-	top: 14;
-	left: 18;
+}
+
+.tileDescription {
+	font-family: $hFont;
+	font-weight: 400;
+	font-size: 15;
+	color: $midGrey;
+	text-align: left;
+	background-color: transparent;
 }

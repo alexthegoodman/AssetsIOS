@@ -162,8 +162,10 @@ export default class Project extends Component {
                     activeOpacity={1} underlayColor="#F2F2F2" onPress={() => this.viewAsset(image['image_id'])}>
                     <View style={styles.tileContain}>
                         <Image style={styles.tileThumbnail} resizeMode="cover" source={{ uri: image['image_url'] }} />
-                        <Text style={styles.tileTitle}>{image['image_name']} {image['image_id']}</Text>
-                        <Text style={styles.tileDescription}>{assetDescrip}</Text>
+                        <View style={styles.tileInfo}>
+                            <Text style={styles.tileTitle}>{image['image_name']}</Text>
+                            <Text style={styles.tileDescription}>{assetDescrip}</Text>
+                        </View>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -178,7 +180,7 @@ export default class Project extends Component {
 
         console.info('Project', gotProjects, userProjects, routeParams.projectId, this.props);
 
-        let gridAssets, slideAssets, compareAssets, projName, blurImage; 
+        let gridAssets, slideAssets, compareAssets, projName, blurImage, currentPhaseLabel; 
         if (currentProject && gotPhase) {
             
             projName        = currentProject['project_name'];
@@ -213,6 +215,12 @@ export default class Project extends Component {
                 return this.generateItem('grid', currentLayout, asset, m);
             });
 
+            for (var i = 0; i < currentPhase['phaseList'].length; i++) {
+                if (currentPhase['phaseList'][i] == currentPhase['phaseId']) {
+                    currentPhaseLabel = 'Phase ' + (i+1);
+                }
+            }
+        
         }
 
         return (
@@ -232,10 +240,12 @@ export default class Project extends Component {
                             </TouchableHighlight>
                         )}
                         rightCtrls={(
-                            <View style={styles.inlineContain}>
-                                {/*{viewMenu}
-                                {layoutMenu}*/}
-                            </View>
+                            <TouchableHighlight onPress={() => this.props.push('/phasePicker/')} style={styles.headerLink} 
+                            activeOpacity={1} underlayColor="rgba(255,255,255,0.1)">
+                                <View style={styles.inlineContain}>
+                                    <Text style={styles.headerLinkText}>{currentPhaseLabel}</Text>
+                                </View>
+                            </TouchableHighlight>
                         )}
                     />
 

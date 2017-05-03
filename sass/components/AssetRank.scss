@@ -1,49 +1,64 @@
 .assetRank {
-
-}
-
-.assetRankBody {
+	border-top-width: 1px;
+	border-top-color: $grey;
 	border-bottom-width: 1px;
 	border-bottom-color: $grey;
 }
 
-.rankList {
-	height: 0;
+.assetRankBody {
 	overflow: hidden;
 }
 
-.averageRank, .userRank {
+.rankList {
+	border-top-width: 1px;
+	border-top-color: $grey;
+	overflow: hidden;
+	background-color: $white;
+}
+
+.averageRank, .userRank, .averageRankContain {
 	flex-direction: row;
    	flex-wrap: wrap;
 }
 
 .averageRank {
-	padding-top: 5px
+	/*background-color: yellow;*/
 }
 
-.averageRankValue, .averageRankLabel {
+.averageRankIcon {
+	position: absolute;
+	width: 20;
+	height: 20;
+	right: 25;
+	top: 15;
+}
+
+.averageRankValue, .averageRankLabel,
+.rankValue, .rankName {
+	padding-top: 12px;
 	font-family: $bFont;
 	font-weight: 600;
 	color: $darkGrey;
+	overflow: hidden;
+	height: 50;
 }
 
-.averageRankValue {
+.averageRankValue, .rankValue {
 	font-size: 18;
 	text-align: center;
 	color: $darkGrey;
 }
 
-.averageCircle, .rankCircle {
-	width: 40;
-	height: 40;
-	border-radius: 50;
+.averageCircle, .rankContain {
+	width: 50;
+	height: 50;
 }
 
-.averageCircle {
+/*.averageCircle {
 	background-color: rgba(255, 255, 255, 0.1);
-}
+}*/
 
-.averageRankLabel {
+.averageRankLabel, .rankName {
 	font-size: 18;
 }
 
@@ -52,22 +67,17 @@
 }
 
 .rankValue, .rankName {
-	font-family: $bFont;
-	font-weight: 600;
-	color: $darkGrey;
+	
 }
 
 .rankValue {
-	font-size: 18;
-	text-align: center;
-	color: $darkGrey;
+	
 }
 
 .rankName {
-	font-size: 14;
-	color: $darkGrey;
+	
 }
 
-.rankCircle {
+/*.rankCircle {
 	background-color: rgba(0, 0, 0, 0.05);
-}
+}*/

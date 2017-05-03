@@ -98,6 +98,10 @@ export default class Browse extends Component {
                                 // });
 
                                 // this.props.setUserId(thisUser[0]['id']);
+
+                                // ATTN: hot live reload go to page
+                                //this.props.push('/project/420');
+                                // this.props.push('/asset/424');
                             
                             } else {
                                 this.props.fetchProjectUsersFailureAction();
@@ -172,7 +176,9 @@ export default class Browse extends Component {
                                         resizeMode="cover" 
                                         source={{ uri: project['phaseImagesData'][0]['image_url'] }} 
                                     />
-                                    <Text style={styles.tileTitle}>{project['project_name']} {project['project_id']}</Text>
+                                    <View style={styles.tileInfo}>
+                                        <Text style={styles.tileTitle}>{project['project_name']}</Text>
+                                    </View>
                                 </View>
                             </TouchableHighlight>
                             {/*<Text style={styles.tileName}>{project['project_name']}</Text>*/}

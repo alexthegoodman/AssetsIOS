@@ -15,7 +15,9 @@ import {
     Linking,
     TouchableHighlight,
     Image,
-    Dimensions
+    Dimensions,
+    ScrollView,
+    Keyboard
 } from 'react-native';
 
 let { width, height } = Dimensions.get('window');
@@ -25,13 +27,18 @@ const styles                        = require('../../css/style.js');
 const JefNode                       = require('json-easy-filter').JefNode;
 const deepcopy                      = require("deepcopy");
 
+import Down       from '../../svgComponents/svg/Down';
+
 export default class AssetRank extends Component {
 
     constructor() {
 
         super();
 
+        this.toggleRankings = this.toggleRankings.bind(this);
+
         this.state = {
+            rankOpen: false,
             rankHeight: 50
         }
 
@@ -43,6 +50,24 @@ export default class AssetRank extends Component {
 
         console.info('AssetRank componentDidMount');
         
+    }
+
+    toggleRankings() {
+
+        Keyboard.dismiss();
+
+        if (this.state.rankOpen) {
+            this.setState({
+                rankOpen: false,
+                rankHeight: 50
+            })
+        } else {
+            this.setState({
+                rankOpen: true,
+                rankHeight: height - 250
+            })
+        }
+
     }
 
     render() {
@@ -65,7 +90,7 @@ export default class AssetRank extends Component {
         
         average = Math.round(total / count);
         if (!isNaN(average)) {
-            averageRank = <View style={styles.averageRank}><View style={styles.averageCircle}><Text style={styles.averageRankValue}>{average}</Text></View><Text style={styles.averageRankLabel}>Average</Text></View>
+            averageRank = <View style={styles.averageRank}><View style={styles.averageCircle}><Text style={styles.averageRankValue}>{average}</Text></View><Text style={styles.averageRankLabel}>Average Rating</Text></View>
         } else {
             averageRank = <View style={styles.noRankingsNote}><Text style={styles.noRankingsNoteText}>No Rankings</Text></View>
         }
@@ -95,8 +120,8 @@ export default class AssetRank extends Component {
                 }
 
                 let fullName = firstname + ' ' + lastname;
-                if (fullName.length > 15) {
-                    fullName = fullName.substr(0, 15) + '...';
+                if (fullName.length > 30) {
+                    fullName = fullName.substr(0, 30) + '...';
                 }
 
                 return <View key={'rankItem' + thisUserHash + assetData['image_id']} style={styles.userRank}><View style={styles.rankContain}><Text style={styles.rankValue}>{rank}</Text></View><Text style={styles.rankName}>{fullName}</Text></View>;
@@ -105,13 +130,18 @@ export default class AssetRank extends Component {
         });
 
         return (
-            <View style={[styles.assetRankBody, { height: 50 } ]}>
-                <View style={styles.averageRank}>
-                    {averageRank}
-                </View>
-                <View style={styles.rankList}>
+            <View style={[styles.assetRankBody, { height: this.state.rankHeight } ]}>
+                <TouchableHighlight activeOpacity={1} underlayColor="#E5E5E5" onPress={this.toggleRankings} style={styles.averageRank}>
+                    <View style={[styles.averageRankContain, {width:width}]}>
+                        {averageRank}
+                        <View style={styles.averageRankIcon}><Down width={20} height={20} color="#595959" /></View>
+                    </View>
+                </TouchableHighlight>
+                <ScrollView style={[styles.rankList, { height: this.state.rankHeight - 50 } ]}
+                    horizontal={false} showsVerticalScrollIndicator={false} automaticallyAdjustContentInsets={false} 
+                    contentInset={{top: 0, left: 0, bottom: 0, right: 0}} contentOffset={{x: 0, y: 0}}>
                     {rankList}
-                </View>
+                </ScrollView>
             </View>
         );
     }

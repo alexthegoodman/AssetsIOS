@@ -58,8 +58,10 @@ export default class Project extends Component {
         this.goBack = this.goBack.bind(this);
 
         this.state = {
-            commentViewHeight: ((height - 250) - 50) - 120,
-            assetContentHeight: 250
+            commentViewHeight: ((height - 250) - 50) - 80,
+            assetContentHeight: 250,
+            thumbnailWidth: 1,
+            thumbnailHeight: 1
         }
 
     }
@@ -67,11 +69,17 @@ export default class Project extends Component {
     componentDidMount() {
 
         let self = this;
+        let assetId     = this.props.routeParams.assetId;
+        let thisAsset   = this.props.currentProject['phaseImagesData'][assetId];
 
         console.info('thisAsset', this.refs.assetRank.state);
 
         /// 150 simpleheader
-        this.setState({ commentViewHeight: ((height - this.state.assetContentHeight) - this.refs.assetRank.state.rankHeight) - 120 });
+        this.setState({ commentViewHeight: ((height - this.state.assetContentHeight) - this.refs.assetRank.state.rankHeight) - 80 });
+
+        Image.getSize(thisAsset['image_url'], (width, height) => {
+            this.setState({ thumbnailWidth: width, thumbnailHeight: height });
+        });
 
     }
 
@@ -86,10 +94,17 @@ export default class Project extends Component {
         let assetId     = routeParams.assetId;
         let thisAsset   = currentProject['phaseImagesData'][assetId];
 
+        console.info(currentProject['phaseImagesData'], assetId);
+
+        let thumbnailPerc   =  this.state.thumbnailWidth / this.state.thumbnailHeight;
+        
+        let thumbnailHeight = (this.state.assetContentHeight - 50);
+        let thumbnailWidth  = thumbnailPerc * thumbnailHeight;
+
         return (
             <View style={styles.body}>
                 <SimpleHeader
-                    title="Asset"
+                    title={thisAsset['image_name']}
                     leftCtrls={(
                         <TouchableHighlight onPress={this.goBack} style={styles.headerLink} 
                         activeOpacity={1} underlayColor="rgba(255,255,255,0.1)">
@@ -106,12 +121,14 @@ export default class Project extends Component {
 
                 <View style={[styles.assetContent, { width: width, height: this.state.assetContentHeight } ]}>
                     <View style={styles.assetContentContain}>
-                        <Image 
-                            style={[styles.assetThumbnail, { width: width - 50, height: this.state.assetContentHeight } ]} 
-                            resizeMode="contain" 
-                            source={{ uri: thisAsset['image_url'] }} 
-                            shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.3} shadowRadius={10}
-                        />
+                        <View style={[styles.thumbnailContain, { width: thumbnailWidth, height: thumbnailHeight }]} shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.3} shadowRadius={10}>
+                            <Image 
+                                style={[styles.assetThumbnail ]} 
+                                resizeMode="contain" 
+                                source={{ uri: thisAsset['image_url'] }} 
+                                
+                            />
+                        </View>
                     </View>
                 </View>
 

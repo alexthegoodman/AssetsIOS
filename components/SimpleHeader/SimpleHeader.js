@@ -47,10 +47,15 @@ export default class SimpleHeader extends Component {
 
     render() {
 
-        let { title, leftCtrls, rightCtrls } = this.props;
+        let { title, leftCtrls, rightCtrls, background } = this.props;
         
+        let backgroundColor = 'transparent';
+        if (typeof background != 'undefined') {
+            backgroundColor = background;
+        }
+
         return (
-            <View style={styles.bodyHeader}>
+            <View style={[styles.bodyHeader, { backgroundColor: backgroundColor } ]}>
                 
                 <BlurView blurType="dark" blurAmount={30} style={[styles.bodyHeaderBlur, { width: width }]} />
 

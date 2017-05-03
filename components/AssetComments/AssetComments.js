@@ -16,7 +16,10 @@ import {
     TouchableHighlight,
     Image,
     Dimensions,
-    ScrollView
+    ScrollView,
+    TextInput,
+    KeyboardAvoidingView,
+    Keyboard
 } from 'react-native';
 
 let { width, height } = Dimensions.get('window');
@@ -30,13 +33,16 @@ const entities                      = new Entities();
 const dateFormat                    = require('dateformat');
 
 import HTMLView from 'react-native-htmlview';
+import InvertibleScrollView from 'react-native-invertible-scroll-view';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 @connect(
     ( state ) => ({
         userHash: state.user.userHash,
         projectComments: state.browse.projectComments,
         gotProjectComments: state.browse.gotProjectComments,
-        projId: state.browse.currentPhase.projectId
+        projId: state.browse.currentPhase.projectId,
+        currentProject: state.browse.currentProject
     }),
     ( dispatch ) => bindActionCreators(Object.assign({}, browseActions, routerActions), dispatch)
 )
@@ -50,7 +56,8 @@ export default class AssetComments extends Component {
         this.state = { 
             text: '',
             likes: {},
-            showAllComments: false
+            showAllComments: false,
+            buttonText: 'Post'
         };
 
         this.buildComment       = this.buildComment.bind(this);
@@ -65,9 +72,7 @@ export default class AssetComments extends Component {
         
     }
 
-    postComment(e) {
-
-        e.preventDefault();
+    postComment() {
 
         if (this.state.text == '') {
 
@@ -75,20 +80,73 @@ export default class AssetComments extends Component {
         
         } else {
 
-            
+            Keyboard.dismiss();
 
-            // post via socket
-            this.context.socket.emit('setComment',
-                {
-                    ProjectId:      this.props.projId,
-                    ImageId:        this.props.assetData['image_id'], 
-                    CommentText:    $commentDOM.html(), 
-                    CommentAuthor:  this.props.userHash 
+            let phaseImagesList = this.props.currentProject['phaseImagesList'];
+
+            let commentInfo = {
+                userHash:       this.props.userHash,
+                projectId:      this.props.projId,
+                imageId:        this.props.assetData['image_id'],
+                commentText:    '<p>' + this.state.text + '</p>',
+                commentAuthor:  this.props.userHash
+            }
+
+            // post by api, upon res the get and refresh
+            client.get('/project/set/comment', commentInfo, 'POST').then(
+                (data) => {
+
+                    console.log('/project/set/comment', data, commentInfo);
+                        
+                    if (typeof data['CommentSet'] != 'undefined' &&
+                        data['CommentSet'] != false) {
+
+                        // refresh comments
+                        if (Object.keys(phaseImagesList).length > 0) {
+
+                            let getInfo = {
+                                userHash: this.props.userHash,
+                                phaseImagesList: JSON.stringify(phaseImagesList)
+                            }
+
+                            client.get('/browse/comments', getInfo).then(
+                                (data) => {
+
+                                    console.info('browse/comments', data, getInfo);
+                                    
+                                    if (typeof data['ProjectComments'] != 'undefined' &&
+                                        data['ProjectComments'] != false) {
+
+                                        this.setState({
+                                            buttonText: 'Post'
+                                        });
+
+                                        this.props.fetchProjectCommentsSuccessAction(data['ProjectComments'], this.props.projId);
+                                    } else {
+                                        this.props.fetchProjectCommentsFailureAction(this.props.projId);
+                                    }
+                                    
+                                }, (err) => {
+                                    //console.log(err);
+                                    this.props.fetchProjectCommentsFailureAction(this.props.projId);
+                                }
+                            );
+                        }
+
+                    } else {
+                        alert('Comment could not posted! Error 2.');
+                    }
+                    
+                }, (err) => {
+                    console.log(err);
+                    alert('Comment could not posted! Error 1.');
                 }
             );
 
-            // clear field
-            this.setState( { text: '' } );
+            this.setState({
+                text: '',
+                buttonText: 'Posting'
+            });
 
         }
 
@@ -96,7 +154,7 @@ export default class AssetComments extends Component {
 
     buildComment(comment, commentCount, imageId) {
 
-        console.info('buildComment', comment, commentCount)
+        // console.info('buildComment', comment, commentCount)
 
         //let userLikes = false;
         let userHash = this.props.userHash;
@@ -129,7 +187,7 @@ export default class AssetComments extends Component {
 
         //let imageId = this.props.assetData['image_id'];
         let imageComments = Object.keys(theseComments[imageId]).map(x => theseComments[imageId][x]);
-        let showComments = Object.keys(imageComments).length - 3;
+        let showComments = 3;
         let moreComment = '', commentClass = '';
 
         if (showComments > 0 && !this.state.showAllComments) {
@@ -138,7 +196,7 @@ export default class AssetComments extends Component {
             //     moreComment = <a data-call="moreComments">Show More Comments</a>
             // }
 
-            if (commentCount <= showComments) {
+            if (commentCount > showComments) {
                 commentClass = styles.hiddenCommentItem;
             }
             
@@ -160,8 +218,6 @@ export default class AssetComments extends Component {
             if (comment['comment_date'] != '') {
                 commentDate     = new Date(entities.decode(comment['comment_date']));
             }
-
-            console.info('html', commentHtml)
 
             return (
                 <View style={[styles.commentItem, commentClass, { width: width }]} key={'comment' + comment['comment_id']}>
@@ -186,47 +242,6 @@ export default class AssetComments extends Component {
 
     }
 
-    // likeComment(e) {
-
-    //     e.preventDefault();
-
-    //     const { likeAssetCommentSuccessAction, likeAssetCommentFailureAction } = this.props;
-    //     let userHash    = this.props.userHash;
-    //     let state       = this.state;
-    //     let nextState   = $.extend({}, state);
-    //     let commentId   = $(e.target).attr('data-comm-id');
-    //     let imgId       = $(e.target).attr('data-image-id');
-    //     let projectId   = this.props.projId;
-
-    //     //console.info('likeComment', userHash, commentId);
-
-    //     if ($(e.target).hasClass('empty')) {
-            
-    //         //nextState['likes'][commentId] = userHash;
-
-    //         //this.setState(nextState);
-
-    //         likeAssetCommentSuccessAction(commentId, imgId, projectId, userHash);
-
-    //         this.context.socket.emit('likeComment', { 
-    //             'CommentId':    commentId,
-    //             'UserHash':       userHash
-    //         } );
-        
-    //     } else {
-    //         console.info('unlike');
-    //     }
-
-    // }
-
-    // showFewerComments() {
-    //     this.setState({ showAllComments: false });
-    // }
-
-    // showAllComments() {
-    //     this.setState({ showAllComments: true });
-    // }
-
     render() {
 
         let { assetData, userHash, projId, projectUsers, projectComments, gotProjectComments } = this.props;
@@ -235,7 +250,7 @@ export default class AssetComments extends Component {
         let imageId         = assetData['image_id'];
         let buildComment    = this.buildComment;
 
-        console.info(projectComments, imageId, projId, projectComments[projId], projectComments[projId][imageId]);
+        // console.info(projectComments, imageId, projId, projectComments[projId], projectComments[projId][imageId]);
 
         projectComments = projectComments[projId];
 
@@ -244,6 +259,8 @@ export default class AssetComments extends Component {
                 if (typeof projectComments[imageId] != 'undefined' && Object.keys(projectComments[imageId]).length > 0) {
 
                     let imageComments = Object.keys(projectComments[imageId]).map(x => projectComments[imageId][x]);
+
+                    imageComments.reverse();
 
                     commentList = imageComments.map( comment => {
 
@@ -265,23 +282,47 @@ export default class AssetComments extends Component {
             commentPlaceholder = 'Loading comments...';
         }
 
-        let commentsCtrl;
-        // if (commentCount > 3) {
-        //     if (this.state.showAllComments) {
-        //         commentsCtrl = <a className="comment-ctrl" onClick={this.showFewerComments} data-call="fewerComments">Show Fewer Comments</a>
-        //     } else {
-        //         commentsCtrl = <a className="comment-ctrl" onClick={this.showAllComments} data-call="allComments">Show All Comments</a>
-        //     }
-        // }
+        let commentsCtrl = <Text style={styles.commentsCtrlText}>Pull to load more...</Text>;
 
         return (
 
             <View style={styles.assetComments}>
-                <View style={[styles.commentsCtrl, { width: width } ]}>{commentsCtrl}</View>
-                <ScrollView style={[styles.commentList, { width: width, height: this.props.commentViewHeight } ]} horizontal={false} showsVerticalScrollIndicator={false} automaticallyAdjustContentInsets={false} contentInset={{top: 0, left: 0, bottom: 0, right: 0}} contentOffset={{x: 0, y: 0}}>{commentList}</ScrollView>
-                <View style={[styles.commentForm, { width: width } ]}>
+                
+                {/*<KeyboardAvoidingView behavior="position" style={[styles.feedbackAvoidingView, { width: width }]}>*/}
+                    <InvertibleScrollView style={[styles.commentList, { width: width, height: this.props.commentViewHeight } ]} 
+                        horizontal={false} showsVerticalScrollIndicator={false} automaticallyAdjustContentInsets={false} 
+                        contentInset={{top: 0, left: 0, bottom: 0, right: 0}} contentOffset={{x: 0, y: 0}} inverted>
+                        <View style={[styles.formSpacer, {width:width}]}></View>
+                        {commentList}
+                        <View style={[styles.commentsCtrl, { width: width } ]}>{commentsCtrl}</View>
+                    </InvertibleScrollView>
+                {/*</KeyboardAvoidingView>*/}
 
+                <View style={[styles.commentFormContain, {width:width}]}>
+                    <View style={[styles.commentForm, { width: width } ]}>
+                        <TextInput
+                            multiline
+                            ref="commentInput"
+                            style={[styles.commentFormInput, {width: width - 110}]}
+                            onChangeText={(text) => {this.setState({text})}}
+                            value={this.state.text}
+                            secureTextEntry={true}
+                            placeholder="Write your message..."
+                            placeholderTextColor="#9B9B9B"
+                            autoCapitalize="none"
+                            selectionColor="#e25147"
+                            returnKeyType="done"
+                            onSubmitEditing={this.postComment}
+                        />
+                        <TouchableHighlight 
+                            onPress={this.postComment} style={[styles.formBtn]} 
+                            activeOpacity={1} underlayColor="#F2F2F2">
+                            <Text style={styles.formBtnText}>{this.state.buttonText}</Text>
+                        </TouchableHighlight>
+                    </View>
+                    <KeyboardSpacer topSpacing={0} />
                 </View>
+                
             </View>
 
         );

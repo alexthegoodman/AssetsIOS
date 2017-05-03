@@ -25,6 +25,9 @@ const FETCH_PHASE_FAILURE = 'browse/FETCH_PHASE_FAILURE';
 const SET_CURRENT_PROJECT_SUCCESS = 'browse/SET_CURRENT_PROJECT_SUCCESS';
 const SET_CURRENT_PROJECT_FAILURE = 'browse/SET_CURRENT_PROJECT_FAILURE';
 
+const SET_CURRENT_PHASE_SUCCESS = 'browse/SET_CURRENT_PHASE_SUCCESS';
+const SET_CURRENT_PHASE_FAILURE = 'browse/SET_CURRENT_PHASE_FAILURE';
+
 const initialState = {
     userProjects: {},
     projectUsers: {},
@@ -158,6 +161,24 @@ export default function reducer(state = initialState, action = {}) {
                 setProject: { $set: action.setProject }
             });
 
+        case SET_CURRENT_PHASE_SUCCESS:
+
+            return update(state, {
+                currentProject: {
+                    phaseId: { $set: action.phaseId },
+                    phaseImagesData: { $set: action.phaseImagesData },
+                    phaseImagesList: { $set: action.phaseImagesList },
+                    phaseName: { $set: action.phaseName }
+                },
+                setProject: { $set: action.setProject }
+            });
+
+        case SET_CURRENT_PHASE_FAILURE:
+
+            return update(state, {
+                setProject: { $set: action.setProject }
+            });
+
 		default:
             return state;
 
@@ -281,5 +302,23 @@ export function setCurrentProjectFailureAction() {
     return {
         type:           SET_CURRENT_PROJECT_FAILURE,
         setProject:    false
+    };
+}
+
+export function setCurrentPhaseSuccessAction(phaseId, phaseImagesData, phaseImagesList, phaseName) {
+    return {
+        type:           SET_CURRENT_PHASE_SUCCESS,
+        phaseId:        phaseId,
+        phaseImagesData: phaseImagesData,
+        phaseImagesList: phaseImagesList,
+        phaseName:      phaseName,
+        setPhase:       true
+    };
+}
+
+export function setCurrentPhaseFailureAction() {
+    return {
+        type:           SET_CURRENT_PHASE_FAILURE,
+        setPhase:    false
     };
 }

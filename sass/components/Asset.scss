@@ -1,5 +1,5 @@
 .assetContent {
-	
+	justify-content: center;	
 }
 
 .assetContentContain {
@@ -8,11 +8,25 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	padding-left: 25px;
+	/*padding: 25px;*/
+	padding: 25px;
+	background-color: white;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.thumbnailContain {
+	border-radius: 5px;
 }
 
 .assetThumbnail {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	border-radius: 5px;
+	overflow: hidden;
 }
 
 .assetRank {
