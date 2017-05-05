@@ -28,6 +28,7 @@ const styles                        = require('../../css/style.js');
 const DeviceInfo                    = require('react-native-device-info');
 const JefNode                       = require('json-easy-filter').JefNode;
 const deepcopy                      = require("deepcopy");
+const Lightbox                      = require('react-native-lightbox');
 
 import SimpleHeader             from '../../components/SimpleHeader/SimpleHeader';
 import CompareAssets            from '../../components/CompareAssets/CompareAssets';
@@ -122,12 +123,20 @@ export default class Project extends Component {
                 <View style={[styles.assetContent, { width: width, height: this.state.assetContentHeight } ]}>
                     <View style={styles.assetContentContain}>
                         <View style={[styles.thumbnailContain, { width: thumbnailWidth, height: thumbnailHeight }]} shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.3} shadowRadius={10}>
-                            <Image 
-                                style={[styles.assetThumbnail ]} 
-                                resizeMode="contain" 
-                                source={{ uri: thisAsset['image_url'] }} 
-                                
-                            />
+                            <Lightbox>
+                                <ScrollView style={[styles.assetThumbnail, { width: thumbnailWidth, height: thumbnailHeight } ]}
+                                    automaticallyAdjustContentInsets={false}
+                                    bounces={false}
+                                    centerContent={true}
+                                    decelerationRate={0.95}
+                                    maximumZoomScale={10} minimumZoomScale={1} zoomScale={1.5}>
+                                    <Image 
+                                        style={[styles.assetThumbnail, { width: thumbnailWidth, height: thumbnailHeight } ]} 
+                                        resizeMode="contain" 
+                                        source={{ uri: thisAsset['image_url'] }} 
+                                    />
+                                </ScrollView>
+                            </Lightbox>
                         </View>
                     </View>
                 </View>
