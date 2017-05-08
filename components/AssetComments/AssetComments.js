@@ -190,17 +190,11 @@ export default class AssetComments extends Component {
         let showComments = 3;
         let moreComment = '', commentClass = '';
 
-        if (showComments > 0 && !this.state.showAllComments) {
-            
-            // if (commentCount == showComments) {
-            //     moreComment = <a data-call="moreComments">Show More Comments</a>
-            // }
-
-            if (commentCount > showComments) {
-                commentClass = styles.hiddenCommentItem;
-            }
-            
-        }
+        // if (showComments > 0 && !this.state.showAllComments) {
+        //     if (commentCount > showComments) {
+        //         commentClass = styles.hiddenCommentItem;
+        //     }
+        // }
 
         if (typeof comment['comment_text'] != 'undefined') {
 
@@ -294,7 +288,7 @@ export default class AssetComments extends Component {
                         contentInset={{top: 0, left: 0, bottom: 0, right: 0}} contentOffset={{x: 0, y: 0}} inverted>
                         <View style={[styles.formSpacer, {width:width}]}></View>
                         {commentList}
-                        <View style={[styles.commentsCtrl, { width: width } ]}>{commentsCtrl}</View>
+                        {/*<View style={[styles.commentsCtrl, { width: width } ]}>{commentsCtrl}</View>*/}
                     </InvertibleScrollView>
                 {/*</KeyboardAvoidingView>*/}
 

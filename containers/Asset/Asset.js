@@ -30,6 +30,8 @@ const JefNode                       = require('json-easy-filter').JefNode;
 const deepcopy                      = require("deepcopy");
 const Lightbox                      = require('react-native-lightbox');
 
+const Orientation                   = require('react-native-orientation');
+
 import SimpleHeader             from '../../components/SimpleHeader/SimpleHeader';
 import CompareAssets            from '../../components/CompareAssets/CompareAssets';
 import AssetRank                from '../../components/AssetRank/AssetRank';
@@ -62,9 +64,17 @@ export default class Project extends Component {
             commentViewHeight: ((height - 250) - 50) - 80,
             assetContentHeight: 250,
             thumbnailWidth: 1,
-            thumbnailHeight: 1
+            thumbnailHeight: 1,
+            orientation: 'PORTRAIT',
+            viewing: false
         }
 
+    }
+
+    _orientationDidChange(orientation) {
+        this.setState({
+            orientation: orientation
+        });
     }
 
     componentDidMount() {
@@ -82,6 +92,8 @@ export default class Project extends Component {
             this.setState({ thumbnailWidth: width, thumbnailHeight: height });
         });
 
+        Orientation.addOrientationListener(this._orientationDidChange.bind(this));
+
     }
 
     goBack() { 
@@ -95,12 +107,19 @@ export default class Project extends Component {
         let assetId     = routeParams.assetId;
         let thisAsset   = currentProject['phaseImagesData'][assetId];
 
-        console.info(currentProject['phaseImagesData'], assetId);
+        // console.info(currentProject['phaseImagesData'], assetId, this.state.orientation);
 
         let thumbnailPerc   =  this.state.thumbnailWidth / this.state.thumbnailHeight;
         
         let thumbnailHeight = (this.state.assetContentHeight - 50);
         let thumbnailWidth  = thumbnailPerc * thumbnailHeight;
+
+        let thumbnailStyles = { width: thumbnailWidth, height: thumbnailHeight }, containStyles = { width: thumbnailWidth, height: thumbnailHeight };
+
+        if (this.state.viewing && this.state.orientation == 'LANDSCAPE') {
+            thumbnailStyles = { width: thumbnailHeight, height: thumbnailWidth };
+            containStyles = { width: height, height: width, transform: [{ rotate: '90deg' }] };
+        }
 
         return (
             <View style={styles.body}>
@@ -123,15 +142,19 @@ export default class Project extends Component {
                 <View style={[styles.assetContent, { width: width, height: this.state.assetContentHeight } ]}>
                     <View style={styles.assetContentContain}>
                         <View style={[styles.thumbnailContain, { width: thumbnailWidth, height: thumbnailHeight }]} shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.3} shadowRadius={10}>
-                            <Lightbox>
-                                <ScrollView style={[styles.assetThumbnail, { width: thumbnailWidth, height: thumbnailHeight } ]}
+                            <Lightbox 
+                                onOpen={() => this.setState({ viewing: true })} 
+                                onClose={() => this.setState({ viewing: false })}
+                                backgroundColor="rgba(0, 0, 0, 0.7)"
+                                underlayColor="rgba(255, 255, 255, 0.3)">
+                                <ScrollView style={[styles.assetThumbnail, containStyles ]}
                                     automaticallyAdjustContentInsets={false}
                                     bounces={false}
                                     centerContent={true}
                                     decelerationRate={0.95}
                                     maximumZoomScale={10} minimumZoomScale={1} zoomScale={1.5}>
                                     <Image 
-                                        style={[styles.assetThumbnail, { width: thumbnailWidth, height: thumbnailHeight } ]} 
+                                        style={[styles.assetThumbnail, thumbnailStyles ]} 
                                         resizeMode="contain" 
                                         source={{ uri: thisAsset['image_url'] }} 
                                     />

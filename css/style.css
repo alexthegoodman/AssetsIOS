@@ -450,6 +450,7 @@
   overflow: hidden; }
 
 .assetRank {
+  background-color: #F7F7F7;
   border-top-width: 1px;
   border-top-color: #D2D2D2;
   border-bottom-width: 1px;
@@ -467,9 +468,6 @@
 .averageRank, .userRank, .averageRankContain {
   flex-direction: row;
   flex-wrap: wrap; }
-
-.averageRank {
-  /*background-color: yellow;*/ }
 
 .averageRankIcon {
   position: absolute;
@@ -508,6 +506,9 @@
 .assetCommentsContain {
   /*border-bottom-width: 1px;
 	border-bottom-color: red;	*/ }
+
+.assetComments {
+  background-color: #F7F7F7; }
 
 .commentsCtrl {
   height: 40;

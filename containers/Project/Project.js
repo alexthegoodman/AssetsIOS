@@ -158,7 +158,7 @@ export default class Project extends Component {
         let key = 'assetsGrid' + image['image_id'];
         return (
             <View style={[styles.tileBox, { width: width } ]} key={'asset' + image['image_id']}>
-                <TouchableOpacity style={[styles.gridTile, { width: width } ]} key={key} 
+                <TouchableHighlight style={[styles.gridTile, { width: width } ]} key={key} 
                     activeOpacity={1} underlayColor="#F2F2F2" onPress={() => this.viewAsset(image['image_id'])}>
                     <View style={styles.tileContain}>
                         <Image style={styles.tileThumbnail} resizeMode="cover" source={{ uri: image['image_url'] }} />
@@ -167,7 +167,7 @@ export default class Project extends Component {
                             <Text style={styles.tileDescription}>{assetDescrip}</Text>
                         </View>
                     </View>
-                </TouchableOpacity>
+                </TouchableHighlight>
             </View>
         );
 

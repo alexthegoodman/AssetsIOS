@@ -114,15 +114,14 @@ export default class Project extends Component {
             
             return (
                 <View style={[styles.tileBox, { width: width } ]} key={'phase' + phaseCount}>
-                    <TouchableOpacity style={[styles.gridTile, { width: width } ]} 
+                    <TouchableHighlight style={[styles.gridTile, { width: width } ]} 
                         activeOpacity={1} underlayColor="#F2F2F2" onPress={() => this.setPhase(phase)}>
                         <View style={styles.tileContain}>
-                            {/*<Image style={styles.tileThumbnail} resizeMode="cover" source={{ uri: image['image_url'] }} />*/}
-                            <View style={styles.tileInfo}>
+                            <View style={[styles.tileInfo, { height: 50 } ]}>
                                 <Text style={styles.tileTitle}>Phase {phaseCount}</Text>
                             </View>
                         </View>
-                    </TouchableOpacity>
+                    </TouchableHighlight>
                 </View>
             );
 
