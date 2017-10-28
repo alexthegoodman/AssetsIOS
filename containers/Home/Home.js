@@ -30,6 +30,9 @@ const JefNode                       = require('json-easy-filter').JefNode;
 const deepcopy                      = require("deepcopy");
 const { BlurView, VibrancyView }    = require('react-native-blur');
 
+import BeForm               from '../../beyondtoolbox/BeForm/BeForm';
+import BeInput              from '../../beyondtoolbox/BeInput/BeInput';
+
 @connect(
     ( state ) => ({
         userHash: state.user.userHash,
@@ -44,12 +47,13 @@ export default class Home extends Component {
 
         super();
 
-        this.attemptLogin = this.attemptLogin.bind(this);
-        this.updateEmail = this.updateEmail.bind(this);
-        this.updatePassword = this.updatePassword.bind(this);
+        this.attemptLogin   = this.attemptLogin.bind(this);
 
         this.state = {
-            loggingIn: false
+            loggingIn: false,
+            submitSuccess: false,
+            submitFailure: false,
+            validating: false,
         }
 
     }
@@ -64,6 +68,7 @@ export default class Home extends Component {
 
         let self = this;
 
+        // grab via ref now
         if (this.state.email && this.state.password) {
 
             self.setState({
@@ -115,14 +120,6 @@ export default class Home extends Component {
 
     }
 
-    updateEmail(text) {
-        this.setState({ email: text });
-    }
-
-    updatePassword(text) {
-        this.setState({ password: text });
-    }
-
     render() {
 
         // let { } = this.props;
@@ -143,7 +140,33 @@ export default class Home extends Component {
                     <View style={styles.loginForm}>
                         <Text style={styles.formHeadline}>Assets</Text>
                         <Text style={styles.formDescription}>Create your account online or access your projects by logging in below.</Text>
-                        <TextInput
+
+                        <BeForm
+                            ref="loginForm"
+                            name="loginForm"
+                            textInputStyle={styles.textInput}
+                            placeholderTextColor="#9B9B9B"
+                            selectionColor="#e25147"
+                            enableNextButton={true}
+                            enableDoneButton={true}
+                            onFinish={this.attemptLogin}
+                        >
+                            <BeInput 
+                                placeholder="Email"
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                            />
+                            <BeInput 
+                                placeholder="Password"
+                                secureTextEntry={true}
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                            />
+                        </BeForm>
+
+
+                        {/*<TextInput
                             ref="login1"
                             style={styles.textInput}
                             onChangeText={this.updateEmail}
@@ -151,13 +174,14 @@ export default class Home extends Component {
                             placeholder="Email"
                             placeholderTextColor="#9B9B9B"
                             autoCapitalize="none"
+                            autoCorrect={false}
                             selectionColor="#e25147"
                             keyboardType="email-address"
                             returnKeyType="next"
                             onSubmitEditing={this.nextInput}
                             onFocus={() => this.setState({ currentInput: '1' })}
                         />
-                        {/*<View style={styles.inputBorder}></View>*/}
+                        <View style={styles.inputBorder}></View>
                         <TextInput
                             ref="login2"
                             style={styles.textInput}
@@ -167,11 +191,12 @@ export default class Home extends Component {
                             placeholder="Password"
                             placeholderTextColor="#9B9B9B"
                             autoCapitalize="none"
+                            autoCorrect={false}
                             selectionColor="#e25147"
                             returnKeyType="done"
                             onSubmitEditing={this.attemptLogin}
                             onFocus={() => this.setState({ currentInput: '2' })}
-                        />
+                        />*/}
                         <TouchableOpacity activeOpacity={1} underlayColor="#F2F2F2"  
                                 style={styles.loginBtn} onPress={ this.attemptLogin }>
                             <View style={styles.loginBtnContain} shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.1} shadowRadius={8}><Text style={styles.loginBtnText}>{buttonText}</Text></View>

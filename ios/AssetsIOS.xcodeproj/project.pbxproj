@@ -760,6 +760,7 @@
 				00E356EF1AD99517003FC87E /* AssetsIOSTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				29FB8F17E30E434B8F38DC2A /* Resources */,
+				FA59A22C1FA3F23F00D7FA7D /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -806,6 +807,17 @@
 				C3C5B5B61EBCD7D400F2966C /* libRCTOrientation.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FA59A22C1FA3F23F00D7FA7D /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				0268BCF5910847B59B52BE34 /* libRNBlur.a */,
+				02A43B5C10D84437B2540CAA /* libRNDeviceInfo.a */,
+				B3F18FFE6B9347698E433B23 /* libRNSVG.a */,
+				35407C601CAF46F69C1C7940 /* libRCTOrientation.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1495,6 +1507,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.beyondnowllc.AssetsIOS;
 				PRODUCT_NAME = AssetsIOS;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1520,6 +1533,7 @@
 					"-ObjC",
 					"-lc++",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.beyondnowllc.AssetsIOS;
 				PRODUCT_NAME = AssetsIOS;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

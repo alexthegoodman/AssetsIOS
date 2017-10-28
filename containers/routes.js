@@ -17,7 +17,7 @@ export default (store) => {
 
         //store.dispatch(loadCookieAction());
 
-        console.info('validate routing');
+        console.info('validate routing?');
 
         cb();
     
