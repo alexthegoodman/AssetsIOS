@@ -7,73 +7,7 @@
 	flex: 1;
 }
 
-.bodyHeader, .bodyHeaderContain {
-	height: 80;
-	flex-direction: column;
-   	justify-content: center;
-}
-
-.bodyHeaderContain {
-	z-index: 20;
-}
-
-.bodyHeaderBlur {
-	position: absolute;
-	height: 80;
-	top: 0;
-	left: 0;
-	z-index: 10;
-}
-
-.bodyHeaderText {
-	top: 5;
-	font-family: $hFont;
-	font-weight: 400;
-	text-align: center;
-	align-self: center;
-	font-size: 18;
-	color: white;
-	background-color: transparent;
-}
-
-.leftCtrls {
-	position: absolute;
-	left: 0;
-	top: 20;
-	flex-direction: row;
-   	flex-wrap: wrap;
-}
-
-.rightCtrls {
-	position: absolute;
-	right: 0;
-	top: 20;
-	flex-direction: row;
-   	flex-wrap: wrap;
-}
-
-.headerLink {
-	@extend .btn;
-	z-index: 100;
-}
-
-.headerLinkText {
-	@extend .btnText;
-	font-weight: 400;
-	color: white;
-}
-
-.headerLinkIcon {
-	/*background-color: red;*/
-	width: 35;
-	height: 35;
-	/*margin-right: 4px;*/
-	top: 0;
-}
-
 .inlineContain {
 	flex-direction: row;
    	flex-wrap: wrap;
 }
-
-

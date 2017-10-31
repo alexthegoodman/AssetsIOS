@@ -30,7 +30,7 @@ const JefNode                       = require('json-easy-filter').JefNode;
 const deepcopy                      = require("deepcopy");
 const Lightbox                      = require('react-native-lightbox');
 
-const Orientation                   = require('react-native-orientation');
+//const Orientation                   = require('react-native-orientation');
 
 import SimpleHeader             from '../../components/SimpleHeader/SimpleHeader';
 import CompareAssets            from '../../components/CompareAssets/CompareAssets';

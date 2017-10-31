@@ -4,7 +4,7 @@ import { StackRoute, Route } from 'react-router-native';
 // //import Cookies              from 'js-cookie';
 
 import App  from './App/App';
-import Home from './Home/Home';
+import Login from './Login/Login';
 import Browse from './Browse/Browse';
 import Project from './Project/Project';
 import PhasePicker from './PhasePicker/PhasePicker';
@@ -26,7 +26,7 @@ export default (store) => {
     return (
         <StackRoute onEnter={validate} path="/" component={App}>
 
-            <Route path="home" component={Home} />
+            <Route path="login" component={Login} />
 
             <Route path="browse" component={Browse} />
 

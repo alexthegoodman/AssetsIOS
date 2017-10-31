@@ -1,14 +1,14 @@
-.bodyHeader, .bodyHeaderContain {
+.heroHeader, .heroHeaderContain {
 	height: 80;
 	flex-direction: column;
    	justify-content: center;
 }
 
-.bodyHeaderContain {
+.heroHeaderContain {
 	z-index: 20;
 }
 
-.bodyHeaderBlur {
+.heroHeaderBlur {
 	position: absolute;
 	height: 80;
 	top: 0;
@@ -16,7 +16,7 @@
 	z-index: 10;
 }
 
-.bodyHeaderText {
+.heroHeaderText {
 	top: 5;
 	font-family: $hFont;
 	font-weight: 400;
@@ -27,7 +27,7 @@
 	background-color: transparent;
 }
 
-.leftCtrls {
+.heroLeftCtrls {
 	position: absolute;
 	left: 0;
 	top: 20;
@@ -35,7 +35,7 @@
    	flex-wrap: wrap;
 }
 
-.rightCtrls {
+.heroRightCtrls {
 	position: absolute;
 	right: 0;
 	top: 20;
@@ -43,18 +43,18 @@
    	flex-wrap: wrap;
 }
 
-.headerLink {
+.heroHeaderLink {
 	@extend .btn;
 	z-index: 100;
 }
 
-.headerLinkText {
+.heroHeaderLinkText {
 	@extend .btnText;
 	font-weight: 400;
 	color: white;
 }
 
-.headerLinkIcon {
+.heroHeaderLinkIcon {
 	/*background-color: red;*/
 	width: 35;
 	height: 35;

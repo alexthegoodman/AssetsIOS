@@ -8,7 +8,7 @@ import {
 
 import Store         from './containers/store';
 import App           from './containers/App/App';
-import Home          from './containers/Home/Home';
+import Login          from './containers/Login/Login';
 
 // hide react native warnings
 console.disableYellowBox = true;

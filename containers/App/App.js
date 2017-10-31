@@ -15,13 +15,13 @@ import {
     StatusBar
 } from 'react-native';
 
-import Home             from '../Home/Home';
+import Login             from '../Login/Login';
 
 const client                        = new ApiClient();
 const styles                        = require('../../css/style.js');
 const DeviceInfo                    = require('react-native-device-info');
 const JefNode                       = require('json-easy-filter').JefNode;
-const Orientation                   = require('react-native-orientation');
+//const Orientation                   = require('react-native-orientation');
 
 @connect(
     ( state ) => ({
@@ -59,7 +59,7 @@ export default class App extends Component {
             console.info('get userHash', err, userRes);
             
             if (!userRes || userRes == null) {
-                this.props.push('/home/');
+                this.props.push('/login/');
             } else {
                 self.props.fetchUserSuccessAction(userRes);
                 // don't redirect if already at browse

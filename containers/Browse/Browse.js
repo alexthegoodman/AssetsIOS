@@ -29,7 +29,7 @@ const DeviceInfo                    = require('react-native-device-info');
 const JefNode                       = require('json-easy-filter').JefNode;
 const deepcopy                      = require("deepcopy");
 
-import SimpleHeader             from '../../components/SimpleHeader/SimpleHeader';
+import HeroHeader             from '../../components/HeroHeader/HeroHeader';
 
 import Back1       from '../../svgComponents/svg/Back1';
 
@@ -195,7 +195,7 @@ export default class Browse extends Component {
                 <Image style={{ zIndex: 1, position: 'absolute', width: width, height: 80 }} source={{ uri: blurImage }} />
                 
                 <View style={[styles.body, { zIndex: 4 }]}>
-                    <SimpleHeader
+                    <HeroHeader
                         title={'Browse'}
                         leftCtrls={(
                             <TouchableHighlight onPress={this.logOut} style={styles.headerLink} 

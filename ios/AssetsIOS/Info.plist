@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<string>org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -24,7 +24,24 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string></string>
 	<key>NSAppTransportSecurity</key>
+	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
@@ -35,101 +52,5 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>AzoSans-Bold.otf</string>
-		<string>AzoSans-BoldItalic.otf</string>
-		<string>AzoSans-Italic.otf</string>
-		<string>AzoSans-Regular.otf</string>
-		<string>AzoSans-Thin.otf</string>
-		<string>AzoSans-ThinItalic.otf</string>
-		<string>AzoSansUber-Regular.otf</string>
-		<string>SkolarSansLatin-Black.otf</string>
-		<string>SkolarSansLatin-BlackItalic.otf</string>
-		<string>SkolarSansLatin-Bold.otf</string>
-		<string>SkolarSansLatin-BoldItalic.otf</string>
-		<string>SkolarSansLatin-Extrabold.otf</string>
-		<string>SkolarSansLatin-ExtraboldItalic.otf</string>
-		<string>SkolarSansLatin-Extralight.otf</string>
-		<string>SkolarSansLatin-ExtralightItalic.otf</string>
-		<string>SkolarSansLatin-Italic.otf</string>
-		<string>SkolarSansLatin-Light.otf</string>
-		<string>SkolarSansLatin-LightItalic.otf</string>
-		<string>SkolarSansLatin-Medium.otf</string>
-		<string>SkolarSansLatin-MediumItalic.otf</string>
-		<string>SkolarSansLatin-Regular.otf</string>
-		<string>SkolarSansLatin-Semibold.otf</string>
-		<string>SkolarSansLatin-SemiboldItalic.otf</string>
-		<string>SkolarSansLatin-Thin.otf</string>
-		<string>SkolarSansLatin-ThinItalic.otf</string>
-		<string>SkolarSansLatinExtended-Black.otf</string>
-		<string>SkolarSansLatinExtended-BlackItalic.otf</string>
-		<string>SkolarSansLatinExtended-Bold.otf</string>
-		<string>SkolarSansLatinExtended-BoldItalic.otf</string>
-		<string>SkolarSansLatinExtended-Extrabold.otf</string>
-		<string>SkolarSansLatinExtended-ExtraboldItalic.otf</string>
-		<string>SkolarSansLatinExtended-Extralight.otf</string>
-		<string>SkolarSansLatinExtended-ExtralightItalic.otf</string>
-		<string>SkolarSansLatinExtended-Italic.otf</string>
-		<string>SkolarSansLatinExtended-Light.otf</string>
-		<string>SkolarSansLatinExtended-LightItalic.otf</string>
-		<string>SkolarSansLatinExtended-Medium.otf</string>
-		<string>SkolarSansLatinExtended-MediumItalic.otf</string>
-		<string>SkolarSansLatinExtended-Regular.otf</string>
-		<string>SkolarSansLatinExtended-Semibold.otf</string>
-		<string>SkolarSansLatinExtended-SemiboldItalic.otf</string>
-		<string>SkolarSansLatinExtended-Thin.otf</string>
-		<string>SkolarSansLatinExtended-ThinItalic.otf</string>
-		<string>iconfont.ttf</string>
-		<string>Material-Design-Icons.ttf</string>
-		<string>ProximaNova-Black.otf</string>
-		<string>ProximaNova-Bold.otf</string>
-		<string>ProximaNova-BoldIt.otf</string>
-		<string>ProximaNova-Extrabold.otf</string>
-		<string>ProximaNova-Light.otf</string>
-		<string>ProximaNova-LightItalic.otf</string>
-		<string>ProximaNova-RegItalic.otf</string>
-		<string>ProximaNova-Regular.otf</string>
-		<string>ProximaNova-RegularItalic.otf</string>
-		<string>ProximaNova-Semibold.otf</string>
-		<string>ProximaNova-SemiboldItalic.otf</string>
-		<string>ProximaNovaCond-Light.otf</string>
-		<string>ProximaNovaCond-LightIt.otf</string>
-		<string>ProximaNovaCond-Regular.otf</string>
-		<string>ProximaNovaCond-RegularIt.otf</string>
-		<string>ProximaNovaCond-Semibold.otf</string>
-		<string>ProximaNovaCond-SemiboldIt.otf</string>
-		<string>Roboto-Bold.ttf</string>
-		<string>Roboto-Light.ttf</string>
-		<string>Roboto-Medium.ttf</string>
-		<string>Roboto-Regular.ttf</string>
-		<string>Roboto-Thin.ttf</string>
-		<string>SourceSansPro-Black.otf</string>
-		<string>SourceSansPro-BlackIt.otf</string>
-		<string>SourceSansPro-Bold.otf</string>
-		<string>SourceSansPro-BoldIt.otf</string>
-		<string>SourceSansPro-ExtraLight.otf</string>
-		<string>SourceSansPro-ExtraLightIt.otf</string>
-		<string>SourceSansPro-It.otf</string>
-		<string>SourceSansPro-Light.otf</string>
-		<string>SourceSansPro-LightIt.otf</string>
-		<string>SourceSansPro-Regular.otf</string>
-		<string>SourceSansPro-Semibold.otf</string>
-		<string>SourceSansPro-SemiboldIt.otf</string>
-	</array>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 </dict>
 </plist>

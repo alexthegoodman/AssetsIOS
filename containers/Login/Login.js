@@ -41,7 +41,7 @@ import BeInput              from '../../beyondtoolbox/BeInput/BeInput';
     ( dispatch ) => bindActionCreators(Object.assign({}, userActions, routerActions), dispatch)
 )
 
-export default class Home extends Component {
+export default class Login extends Component {
 
     constructor() {
 

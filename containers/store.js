@@ -16,8 +16,10 @@ import { ConnectedRouter, syncHistoryWithStore }    from 'react-router-redux';
 
 const client                = new ApiClient();
 const store                 = createStore(nativeHistory, client, window.__data);
+
 const history               = syncHistoryWithStore(nativeHistory, store);
-history.push('/');
+console.info(history)
+// nativeHistory.push('/');
 
 //const DevTools 		= require('./DevTools/DevTools');
 
@@ -36,7 +38,7 @@ export default class Store extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<Router history={history}>
+				<Router history={nativeHistory}>
 					{getRoutes(store)}
 				</Router>
 			    {/*<DevTools />*/}
