@@ -35,8 +35,13 @@ export default class BeInput extends Component {
 
         let self = this;
 
+        this.focus              = this.focus.bind(this);
         this.formatPhone        = this.formatPhone.bind(this);
         
+    }
+
+    focus() {
+        this.refs[this.props.inputName].focus();
     }
 
     // input masks
@@ -54,18 +59,30 @@ export default class BeInput extends Component {
 
     render() {
 
-        let { placeholder, keyboardType, autoCapitalize, autoCorrect, secureTextEntry } = this.props;
+        // props are either passed down straight thry BeInput, or up from BeForm then thru BeInput
+        let { inputName, placeholder, keyboardType, autoCapitalize, autoCorrect, secureTextEntry } = this.props;
+        let { placeholderTextColor, selectionColor, onChangeText, value, returnKeyType, onSubmitEditing, onFocus } = this.props;
 
-        console.info('BeInput render ', placeholder, keyboardType, autoCapitalize, autoCorrect, secureTextEntry)
+        // console.info('BeInput render ', inputName, placeholder, keyboardType, autoCapitalize, autoCorrect, secureTextEntry);
+        // console.info('Render global', placeholderTextColor, selectionColor, onChangeText, value, returnKeyType, onSubmitEditing, onFocus)
 
         return (
             <TextInput 
+                ref={inputName}
                 style={styles.textInput}
+            
                 placeholder={placeholder}
                 keyboardType={keyboardType}
                 autoCapitalize={autoCapitalize}
                 autoCorrect={autoCorrect}
                 secureTextEntry={secureTextEntry}
+                placeholderTextColor={placeholderTextColor}
+                selectionColor={selectionColor}
+                onChangeText={onChangeText}
+                value={value}
+                returnKeyType={returnKeyType}
+                onSubmitEditing={onSubmitEditing}
+                onFocus={onFocus}
             />
         );
     }

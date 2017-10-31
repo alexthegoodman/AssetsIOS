@@ -67,17 +67,20 @@ export default class Home extends Component {
     attemptLogin() {
 
         let self = this;
+        let textInputs = this.refs['loginForm'].state.textInputs;
 
-        // grab via ref now
-        if (this.state.email && this.state.password) {
+        //console.info('attemp login', textInputs)
+
+        // textInputs['loginForm1']
+        if (textInputs['loginForm1'] && textInputs['loginForm2']) {
 
             self.setState({
                 loggingIn: true
             });
 
             let loginInfo = {
-                email:      this.state.email,
-                pass:       this.state.password,
+                email:      textInputs['loginForm1'],
+                pass:       textInputs['loginForm2'],
                 hasHash:    false
             }
 
@@ -144,9 +147,10 @@ export default class Home extends Component {
                         <BeForm
                             ref="loginForm"
                             name="loginForm"
-                            textInputStyle={styles.textInput}
                             placeholderTextColor="#9B9B9B"
                             selectionColor="#e25147"
+                            autoCapitalize="none"
+                            autoCorrect={false}
                             enableNextButton={true}
                             enableDoneButton={true}
                             onFinish={this.attemptLogin}
@@ -154,14 +158,10 @@ export default class Home extends Component {
                             <BeInput 
                                 placeholder="Email"
                                 keyboardType="email-address"
-                                autoCapitalize="none"
-                                autoCorrect={false}
                             />
                             <BeInput 
                                 placeholder="Password"
                                 secureTextEntry={true}
-                                autoCapitalize="none"
-                                autoCorrect={false}
                             />
                         </BeForm>
 
