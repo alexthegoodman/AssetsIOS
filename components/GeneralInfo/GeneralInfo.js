@@ -1,4 +1,4 @@
-import React, { Component, PropTypes }  from 'react';
+import React, { Component }  from 'react';
 // import config                           from '../../config';
 // import { bindActionCreators }           from 'redux';
 // import { connect }                      from 'react-redux';

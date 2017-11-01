@@ -1,18 +1,18 @@
 import { createStore as _createStore, applyMiddleware, compose } from 'redux';
 import createMiddleware from './middleware/clientMiddleware';
-import { routerMiddleware } from 'react-router-redux';
+// import { routerMiddleware } from 'react-router-redux';
 //import promiseMiddleware from 'redux-promise';
 //import thunk             from 'redux-thunk';
 
 // const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 // overrides Redux's createStore
-export default function createStore(history, client, data) {
+export default function createStore(reducer, client, data) {
 
     // Sync dispatched route actions to the history
-    const reduxRouterMiddleware = routerMiddleware(history);
-
-    const middleware = [createMiddleware(client), reduxRouterMiddleware];
+    //const reduxRouterMiddleware = routerMiddleware(history);
+    // const middleware = [createMiddleware(client), reduxRouterMiddleware];
+    const middleware = [createMiddleware(client)];
 
     // Set up dev tools
     let finalCreateStore;
@@ -35,7 +35,7 @@ export default function createStore(history, client, data) {
     
     }
 
-    const reducer = require('./modules/reducer').default;
+    //const reducer = require('./modules/reducer').default;
 
     const store = finalCreateStore(reducer, data);
 

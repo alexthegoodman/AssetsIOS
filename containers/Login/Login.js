@@ -1,8 +1,9 @@
-import React, { Component, PropTypes }  from 'react';
+import React, { Component }  from 'react';
 import { connect }                      from 'react-redux';
 import { bindActionCreators }           from 'redux';
 import * as userActions                 from '../../redux/modules/user';
-import { routerActions }                from 'react-router-redux';
+import * as browseActions                 from '../../redux/modules/browse';
+
 import ApiClient                        from '../../helpers/ApiClient';
 
 import {
@@ -38,7 +39,7 @@ import BeInput              from '../../beyondtoolbox/BeInput/BeInput';
         userHash: state.user.userHash,
         userData: state.user.userData
     }),
-    ( dispatch ) => bindActionCreators(Object.assign({}, userActions, routerActions), dispatch)
+    ( dispatch ) => bindActionCreators(Object.assign({}, browseActions, userActions), dispatch)
 )
 
 export default class Login extends Component {
@@ -61,6 +62,10 @@ export default class Login extends Component {
     componentDidMount() {
 
         let self = this;
+
+        console.info('Login')
+
+        //self.props.push('/')
 
     }
 
@@ -100,7 +105,7 @@ export default class Login extends Component {
 
                         AsyncStorage.setItem('userHash', userHash + '', (err, userRes) => {
                             self.props.fetchUserSuccessAction(userHash);
-                            self.props.push('/browse/');
+                            //self.props.push('/browse/');
                         });
 
                     } else {

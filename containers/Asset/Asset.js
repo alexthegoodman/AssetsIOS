@@ -1,8 +1,9 @@
-import React, { Component, PropTypes }  from 'react';
+import React, { Component }  from 'react';
 import { connect }                      from 'react-redux';
 import { bindActionCreators }           from 'redux';
-import * as browseActions               from '../../redux/modules/browse';
-import { routerActions }                from 'react-router-redux';
+import * as userActions                 from '../../redux/modules/user';
+import * as browseActions                 from '../../redux/modules/browse';
+
 import ApiClient                        from '../../helpers/ApiClient';
 
 import {
@@ -49,7 +50,7 @@ import Back1      from '../../svgComponents/svg/Back1';
         gotPhase: state.browse.gotPhase,
         currentProject: state.browse.currentProject
     }),
-    ( dispatch ) => bindActionCreators(Object.assign({}, browseActions, routerActions), dispatch)
+    ( dispatch ) => bindActionCreators(Object.assign({}, browseActions, userActions), dispatch)
 )
 
 export default class Project extends Component {
@@ -65,16 +66,16 @@ export default class Project extends Component {
             assetContentHeight: 250,
             thumbnailWidth: 1,
             thumbnailHeight: 1,
-            orientation: 'PORTRAIT',
+            //orientation: 'PORTRAIT',
             viewing: false
         }
 
     }
 
     _orientationDidChange(orientation) {
-        this.setState({
-            orientation: orientation
-        });
+        // this.setState({
+        //     orientation: orientation
+        // });
     }
 
     componentDidMount() {
@@ -92,7 +93,7 @@ export default class Project extends Component {
             this.setState({ thumbnailWidth: width, thumbnailHeight: height });
         });
 
-        Orientation.addOrientationListener(this._orientationDidChange.bind(this));
+        //Orientation.addOrientationListener(this._orientationDidChange.bind(this));
 
     }
 
@@ -116,10 +117,10 @@ export default class Project extends Component {
 
         let thumbnailStyles = { width: thumbnailWidth, height: thumbnailHeight }, containStyles = { width: thumbnailWidth, height: thumbnailHeight };
 
-        if (this.state.viewing && this.state.orientation == 'LANDSCAPE') {
-            thumbnailStyles = { width: thumbnailHeight, height: thumbnailWidth };
-            containStyles = { width: height, height: width, transform: [{ rotate: '90deg' }] };
-        }
+        // if (this.state.viewing && this.state.orientation == 'LANDSCAPE') {
+        //     thumbnailStyles = { width: thumbnailHeight, height: thumbnailWidth };
+        //     containStyles = { width: height, height: width, transform: [{ rotate: '90deg' }] };
+        // }
 
         return (
             <View style={styles.body}>

@@ -1,8 +1,9 @@
-import React, { Component, PropTypes }  from 'react';
+import React, { Component }  from 'react';
 import { connect }                      from 'react-redux';
 import { bindActionCreators }           from 'redux';
 import * as userActions                 from '../../redux/modules/user';
-import { routerActions }                from 'react-router-redux';
+import * as browseActions                 from '../../redux/modules/browse';
+
 import ApiClient                        from '../../helpers/ApiClient';
 
 import {
@@ -28,7 +29,7 @@ const JefNode                       = require('json-easy-filter').JefNode;
         userHash: state.user.userHash,
         userData: state.user.userData
     }),
-    ( dispatch ) => bindActionCreators(Object.assign({}, userActions, routerActions), dispatch)
+    ( dispatch ) => bindActionCreators(Object.assign({}, browseActions, userActions), dispatch)
 )
 
 export default class App extends Component {
@@ -51,19 +52,19 @@ export default class App extends Component {
 
         let self = this;
 
-        Orientation.lockToPortrait();
+        //Orientation.lockToPortrait();
 
         // load up first screen / child
         AsyncStorage.getItem('userHash', (err, userRes) => {
 
-            console.info('get userHash', err, userRes);
+            console.info('get userHash', err, userRes, self.props, self.context);
             
             if (!userRes || userRes == null) {
-                this.props.push('/login/');
+                //self.props.push('/login');
             } else {
                 self.props.fetchUserSuccessAction(userRes);
                 // don't redirect if already at browse
-                this.props.push('/browse/');
+                //self.props.push('/browse/');
             }
             
         });

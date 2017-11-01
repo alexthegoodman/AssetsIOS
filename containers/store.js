@@ -1,54 +1,79 @@
+// index file. pulls in routes.js
+
 global.__DEVELOPMENT__  = true;
 global.__DEVTOOLS__     = false;
 
 import React, {Component} 						from 'react';
 import { applyMiddleware, combineReducers } 	from 'redux';
-import { Provider } 							from 'react-redux';
+import { Provider, connect } 							from 'react-redux';
 import createStore                              from '../redux/create';
 import ApiClient                                from '../helpers/ApiClient';
-import getRoutes                                from './routes';
+import Routes                                from './routes';
 
-// get react-router-native straight from master
-import { Link, nativeHistory, Route, Router, StackRoute } 		from 'react-router-native';
-import { ConnectedRouter, syncHistoryWithStore }    from 'react-router-redux';
-//import createHistory 								from 'history/createMemoryHistory';
-//const newHistory 									= createHistory();
+import browse             from '../redux/modules/browse';
+import user               from '../redux/modules/user';
 
-const client                = new ApiClient();
-const store                 = createStore(nativeHistory, client, window.__data);
+import {
+    Text,
+    View
+} from 'react-native';
 
-const history               = syncHistoryWithStore(nativeHistory, store);
-console.info(history)
-// nativeHistory.push('/');
+import { addNavigationHelpers } from 'react-navigation';
 
-//const DevTools 		= require('./DevTools/DevTools');
+console.info(Routes.router.getActionForPathAndParams('Login'))
 
-// subscribe to all redux updates, intercept routing
-store.subscribe(function fetcher() {
+const initialState = Routes.router.getStateForAction(Routes.router.getActionForPathAndParams('Login'));
 
-    let state = store.getState();
-    let currentPath = state.routing.locationBeforeTransitions.pathname;
-    let segments = currentPath.split('/');
+const navReducer = (state = initialState, action) => {
+	const nextState = Routes.router.getStateForAction(action, state);
+	return nextState || state;
+};
 
-    console.info('Redux update', currentPath, state);
-
+// Integrate React Navigation with Redux
+// no need to ever edit this file except the appReducer
+const appReducer = combineReducers({
+	nav: navReducer,
+	browse,
+	user
 });
 
-export default class Store extends Component {
+class NavStore extends React.Component {
 	render() {
 		return (
-			<Provider store={store}>
-				<Router history={nativeHistory}>
-					{getRoutes(store)}
-				</Router>
-			    {/*<DevTools />*/}
-			</Provider>
+			<Routes navigation={addNavigationHelpers({
+				dispatch: this.props.dispatch,
+				state: this.props.nav,
+			})} />
 		);
 	}
 }
 
+const mapStateToProps = (state) => ({
+	nav: state.nav
+});
 
+const StoreContain = connect(mapStateToProps)(NavStore);
 
+const client 	= new ApiClient();
+const store  	= createStore(appReducer, client, window.__data);
 
+// // subscribe to all redux updates, intercept routing
+// store.subscribe(function fetcher() {
 
+//     let state = store.getState();
+//     // let currentPath = state.routing.locationBeforeTransitions.pathname;
+//     // let segments = currentPath.split('/');
 
+//     console.info('Redux update', state);
+
+// });
+
+export default class Store extends React.Component {
+	render() {
+		return (
+			<Provider store={store}>
+				<StoreContain />
+			</Provider>
+		);
+	}
+}

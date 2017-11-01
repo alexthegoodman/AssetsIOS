@@ -1,8 +1,9 @@
-import React, { Component, PropTypes }  from 'react';
+import React, { Component }  from 'react';
 import { connect }                      from 'react-redux';
 import { bindActionCreators }           from 'redux';
-import * as browseActions               from '../../redux/modules/browse';
-import { routerActions }                from 'react-router-redux';
+import * as userActions                 from '../../redux/modules/user';
+import * as browseActions                 from '../../redux/modules/browse';
+
 import ApiClient                        from '../../helpers/ApiClient';
 
 import {
@@ -40,7 +41,7 @@ import Back1       from '../../svgComponents/svg/Back1';
         userProjects: state.browse.userProjects,
         gotProjects: state.browse.gotProjects
     }),
-    ( dispatch ) => bindActionCreators(Object.assign({}, browseActions, routerActions), dispatch)
+    ( dispatch ) => bindActionCreators(Object.assign({}, browseActions, userActions), dispatch)
 )
 
 export default class Browse extends Component {
