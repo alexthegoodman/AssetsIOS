@@ -1,0 +1,55 @@
+.settingsBlock {
+	margin-top: 25;
+}
+
+.blockLabel {
+	@extend .commonText;
+	padding: 0 0 12 15;
+	font-size: 14;
+	color: $darkGrey;
+	font-weight: 600;
+	letter-spacing: 0.4;
+}
+
+.inviteSettingsLink {
+	border-top-color: $grey;
+	border-top-width: 1;
+}
+
+.shareLinkContainer {
+	height: 70;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	background-color: rgba($black, 0.15);
+}
+
+.linkContainer {
+	height: 70;
+	flex: 1;
+	/*background-color: blue;*/
+	padding: 22 15;
+	/*border-bottom-color: $grey;
+	border-bottom-width: 1;
+	border-top-color: $grey;
+	border-top-width: 1;*/
+}
+
+.shareLink {
+	@extend .commonText;
+	color: $black;
+	font-size: 18;
+}
+
+.shareLinkBtn {
+	width: 70;
+	height: 70;
+	background-color: $new_pink;
+	z-index: 10;
+}
+
+.shareLinkBtnContain {
+	position: relative;
+	top: 20;
+	left: 22;
+	color: white;
+}

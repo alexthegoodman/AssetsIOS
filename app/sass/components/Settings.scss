@@ -1,0 +1,36 @@
+.settingsList {
+	background-color: white;
+}
+
+.settingsLink {
+	/*@extend .btn;*/
+	height: 70;
+	z-index: 100;
+	border-bottom-color: $grey;
+	border-bottom-width: 1px;
+	padding-top: 18;
+	padding-left: 15;
+}
+
+.settingsLinkText {
+	@extend .btnText;
+	font-weight: 400;
+	color: $darkGrey;
+	font-size: 16px;
+}
+
+.settingsLinkIcon {
+	width: 35;
+	height: 35;
+	top: 0;
+}
+
+.rightLinkIcon {
+	right: 0;
+	top: 2;
+	position: absolute;
+}
+
+.arrowIcon {
+	color: $darkGrey;
+}

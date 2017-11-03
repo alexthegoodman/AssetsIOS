@@ -1,0 +1,16 @@
+.inviteButton {
+	border-radius: 50;
+	width: 50;
+	height: 50;
+	overflow: hidden;
+	top: -19;
+	position: absolute;
+	z-index: 50;
+	border-color: $new_pink_d;
+	border-width: 2px;
+}
+
+.gradientContainer {
+	flex: 1;
+	padding: 7;
+}

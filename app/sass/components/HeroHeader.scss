@@ -1,0 +1,77 @@
+$heroHeaderHeight: 120;
+
+.heroHeader, .heroHeaderContain {
+	height: $heroHeaderHeight;
+	flex-direction: column;
+   	justify-content: center;
+   	z-index: 20;
+}
+
+.heroHeaderContain {
+	z-index: 20;
+}
+
+.heroHeaderBlur {
+	position: absolute;
+	height: $heroHeaderHeight;
+	top: 0;
+	left: 0;
+	z-index: 10;
+}
+
+.heroHeaderText {
+	top: 15;
+	font-family: $hFont;
+	font-weight: 400;
+	text-align: center;
+	align-self: center;
+	font-size: 20;
+	color: white;
+	letter-spacing: 0.7px;
+	background-color: transparent;
+}
+
+.heroLeftCtrls {
+	position: absolute;
+	left: 0;
+	top: 20;
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+.heroRightCtrls {
+	position: absolute;
+	right: 0;
+	top: 20;
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+.heroHeaderLink {
+	@extend .btn;
+	z-index: 100;
+}
+
+.heroHeaderLinkText {
+	@extend .btnText;
+	font-weight: 400;
+	color: white;
+}
+
+.heroHeaderLinkIcon {
+	/*background-color: red;*/
+	width: 35;
+	height: 35;
+	/*margin-right: 4px;*/
+	top: 0;
+}
+
+.heroShadow {
+	position: absolute;
+	top: $heroHeaderHeight - 10;
+	height: 10;
+	background-color: white;
+	z-index: 15;
+}
+
+

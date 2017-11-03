@@ -1,0 +1,31 @@
+.listBox {
+	border-bottom-color: $grey;
+	border-bottom-width: 1px;
+
+}
+
+.listTile {
+	
+}
+
+.listTileContain {
+	overflow: hidden;
+	padding-top: 7;
+	padding-bottom: 7;
+}
+
+.listTileInfo {
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 12;
+}
+
+.listTileTitle {
+	font-family: $hFont;
+	font-weight: 400;
+	font-size: 16;
+	color: $darkGrey;
+	text-align: left;
+	background-color: transparent;
+	left: 7;
+}

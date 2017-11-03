@@ -1,0 +1,32 @@
+.body {
+	flex: 1;
+	/*background-color: white;*/
+}
+
+.appBody {
+	flex: 1;
+	background-color: white;
+}
+
+.bodyBack {
+	flex: 1;
+}
+
+.inlineContain {
+	flex-direction: row;
+   	flex-wrap: wrap;
+}
+
+.hiddenBody {
+	opacity: 0;
+}
+
+/*.tabBar {
+	height: 70;
+	background-color: $white;
+	padding: 12 0;
+}
+
+.tabBarLabel {
+
+}*/

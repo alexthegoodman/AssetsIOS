@@ -6,9 +6,9 @@ import {
     View
 } from 'react-native';
 
-import Store         from './containers/store';
-import App           from './containers/App/App';
-import Login          from './containers/Login/Login';
+import Store         from './app/store';
+import App           from './app/containers/App/App';
+import Login          from './app/containers/Login/Login';
 
 // hide react native warnings
 console.disableYellowBox = true;
