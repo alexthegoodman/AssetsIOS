@@ -44,7 +44,7 @@ const initialState = {
 
 import update from 'immutability-helper';
 export default function reducer(state = initialState, action = {}) {
-    
+
     switch (action.type) {
 
     	case FETCH_PROJECTS_SUCCESS:
@@ -133,7 +133,7 @@ export default function reducer(state = initialState, action = {}) {
                 gotPhase: { $set: true },
                 currentPhase: {
                     projectId: { $set: action.projectId },
-                    phaseId: { $set: action.phaseId }, 
+                    phaseId: { $set: action.phaseId },
                     phaseImagesList: { $set: action.phaseImagesList },
                     phaseList: { $set: action.phaseList },
                     inView: { $set: false }
@@ -276,9 +276,9 @@ export function fetchPhaseSuccessAction(projectId, phaseId, phaseImagesList, pha
         type:           FETCH_PHASE_SUCCESS,
         gotPhase:       true,
         projectId:      projectId,
-        phaseId:        phaseId, 
-        phaseImagesList: phaseImagesList, 
-        phaseList:      phaseList, 
+        phaseId:        phaseId,
+        phaseImagesList: phaseImagesList,
+        phaseList:      phaseList,
         phaseData:      phaseData
     }
 }

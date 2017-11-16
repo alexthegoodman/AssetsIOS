@@ -90,14 +90,14 @@ export default class Login extends Component {
                 hasHash:    false
             }
 
-            client.get('/login', loginInfo, 'POST').then(
+            client.get('/authenticate/user/', loginInfo, 'POST').then(
                 (data) => {
 
-                    console.log('/login', loginInfo, data);
+                    console.log('/authenticate/user', loginInfo, data);
 
                     if (typeof data['LoginAttempt'] != 'undefined' &&
                         data['LoginAttempt'] == 'success') {
-                        
+
                         self.setState({
                             loggingIn: false
                         });
@@ -118,7 +118,7 @@ export default class Login extends Component {
                         alert(data['Alert']);
 
                     }
-                    
+
                 }
             ).catch((err) => {
                 console.error(err);
@@ -144,7 +144,7 @@ export default class Login extends Component {
                 <StatusBar barStyle="light-content" />
                 <Image style={[styles.bodyLeftBackground, { width: width, height: height }]} resizeMode="cover" source={require('../../img/backs/demo.jpg')}></Image>
                 <BlurView blurType="dark" blurAmount={10} style={[styles.bodyLeftBlur, { width: width, height: height }]} />
-                
+
                 <View style={[styles.bodyTop, { width: width, height: 350 }]}>
                     <View style={styles.loginForm}>
                         <Text style={styles.formHeadline}>Assets</Text>
@@ -161,11 +161,11 @@ export default class Login extends Component {
                             enableDoneButton={true}
                             onFinish={this.attemptLogin}
                         >
-                            <BeInput 
+                            <BeInput
                                 placeholder="Email"
                                 keyboardType="email-address"
                             />
-                            <BeInput 
+                            <BeInput
                                 placeholder="Password"
                                 secureTextEntry={true}
                             />
@@ -203,7 +203,7 @@ export default class Login extends Component {
                             onSubmitEditing={this.attemptLogin}
                             onFocus={() => this.setState({ currentInput: '2' })}
                         />*/}
-                        <TouchableOpacity activeOpacity={1} underlayColor="#F2F2F2"  
+                        <TouchableOpacity activeOpacity={1} underlayColor="#F2F2F2"
                                 style={styles.loginBtn} onPress={ this.attemptLogin }>
                             <View style={styles.loginBtnContain} shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.1} shadowRadius={8}><Text style={styles.loginBtnText}>{buttonText}</Text></View>
                         </TouchableOpacity>

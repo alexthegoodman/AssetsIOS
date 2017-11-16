@@ -73,6 +73,8 @@ export default class Project extends Component {
 
         let self = this;
 
+        // should pre-load?
+
         console.info('Project mount', self.props)
 
         let thisProject = new JefNode(self.props.userProjects).filter(function(node) {
@@ -110,7 +112,7 @@ export default class Project extends Component {
 
     }
 
-    goBack() { 
+    goBack() {
         this.props.navigation.goBack();
     }
 
@@ -131,14 +133,14 @@ export default class Project extends Component {
 
         let assetDescrip = image['image_descrip'], descripComp, titleTop = { top: 17 };
         if (typeof assetDescrip != 'undefined' && assetDescrip.length > 1) {
-            
+
             titleTop = {};
-            
+
             if (assetDescrip.length > 50) {
                 assetDescrip = assetDescrip.substr(0, 50);
                 assetDescrip += '...';
             }
-            
+
             descripComp = <Text style={styles.tileDescription}>{assetDescrip}</Text>
 
         }
@@ -150,12 +152,12 @@ export default class Project extends Component {
             <View style={[styles.tileBox, { width: itemWidth, left: 25 } ]} key={'asset' + image['image_id']}
                 shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.2} shadowRadius={14}>
                 <View style={styles.tileGridThing}>
-                    <TouchableHighlight style={[styles.gridTile, { width: width } ]} key={key} 
+                    <TouchableHighlight style={[styles.gridTile, { width: width } ]} key={key}
                         activeOpacity={1} underlayColor="#F2F2F2" onPress={() => this.viewAsset(image['image_id'])}>
                         <View style={styles.tileContain}>
-                            <Image 
-                                style={[styles.tileThumbnail, { width: itemWidth }]} 
-                                resizeMode="cover" 
+                            <Image
+                                style={[styles.tileThumbnail, { width: itemWidth }]}
+                                resizeMode="cover"
                                 source={{ uri: image['image_url'] }}
                             />
                             <View style={[styles.thumbnailContain, { width: itemWidth }]}></View>
@@ -176,11 +178,11 @@ export default class Project extends Component {
         let { userProjects, gotProjects, navigation, currentPhase, currentPhaseData, gotPhase, currentProject } = this.props;
         let { currentView, viewMenuOpen, layoutMenuOpen, currentLayout, selectedAssets } = this.state;
 
-        console.info('Project', gotProjects, userProjects, navigation, this.props);
+        //console.info('Project', gotProjects, userProjects, navigation, this.props);
 
-        let gridAssets, slideAssets, compareAssets, projName, blurImage, currentPhaseLabel; 
+        let gridAssets, slideAssets, compareAssets, projName, blurImage, currentPhaseLabel;
         if (currentProject && gotPhase) {
-            
+
             projName        = currentProject['project_name'];
             let projAuthor      = currentProject['project_author'];
             let projUsersJoined = currentProject['users_joined'];
@@ -192,13 +194,13 @@ export default class Project extends Component {
 
             let newPhaseData    = deepcopy(currentPhaseData);
             let phaseData       = Object.keys(newPhaseData).map(x => newPhaseData[x]);
-            
+
             // phaseData = this.orderByRank(phaseData, userId);
 
             this.phaseDataLength = phaseData.length;
             this.total      = 0;
             this.itemCount  = 0;
-            
+
             let projCount = 0;
             phaseData.map( asset => {
                 projCount++;
@@ -218,18 +220,18 @@ export default class Project extends Component {
                     currentPhaseLabel = 'Phase ' + (i+1);
                 }
             }
-        
+
         }
 
         return (
             <View style={styles.body}>
                 <Image style={{ zIndex: 1, position: 'absolute', width: width, height: 80 }} source={{ uri: blurImage }} />
-                
+
                 <View style={[styles.body, { zIndex: 4 }]}>
                     <SimpleHeader
                         title={projName}
                         leftCtrls={(
-                            <TouchableHighlight onPress={this.goBack} style={styles.headerLink} 
+                            <TouchableHighlight onPress={this.goBack} style={styles.headerLink}
                             activeOpacity={1} underlayColor="rgba(255,255,255,0.1)">
                                 <View style={styles.inlineContain}>
                                     <Back1 width={35} height={35} color="white" />
@@ -238,7 +240,7 @@ export default class Project extends Component {
                             </TouchableHighlight>
                         )}
                         rightCtrls={(
-                            <TouchableHighlight onPress={() => this.props.navigation.navigate('PhasePicker')} style={styles.headerLink} 
+                            <TouchableHighlight onPress={() => this.props.navigation.navigate('PhasePicker')} style={styles.headerLink}
                             activeOpacity={1} underlayColor="rgba(255,255,255,0.1)">
                                 <View style={styles.inlineContain}>
                                     <Text style={styles.headerLinkText}>{currentPhaseLabel}</Text>

@@ -5,7 +5,7 @@ const DeviceInfo      = require('react-native-device-info');
 //const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 // get endpoint in proper format
-function formatUrl(path, version = '1.0') {
+function formatUrl(path, version = '1.0.0') {
 
     let pathBase = '';
     if (DeviceInfo.isEmulator()) {
@@ -13,16 +13,16 @@ function formatUrl(path, version = '1.0') {
     } else {
         pathBase = 'https://assetsbeta.herokuapp.com/api';
     }
-    
+
     const adjustedPath = path[0] !== '/' ? '/' + path : path;
-    
-    // return pathBase + '/v' + version + adjustedPath;
-    return pathBase + adjustedPath;
+
+    return pathBase + '/v' + version + adjustedPath;
+    //return pathBase + adjustedPath;
 
 }
 
 export default class ApiClient {
-    
+
     constructor() {}
 
     get(endpoint, params, method = 'GET') {
@@ -38,7 +38,7 @@ export default class ApiClient {
             }
             fetchParams = { method: method };
         } else if (method == 'POST') {
-            fetchParams = { 
+            fetchParams = {
                 method: method,
                 body: JSON.stringify(params),
                 headers: newHeaders
@@ -62,7 +62,7 @@ export default class ApiClient {
     }
 
     // post() {
-        
+
     // }
 
     // fetch() {

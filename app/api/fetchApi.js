@@ -7,7 +7,7 @@ import ApiClient            from './client';
 const client                = new ApiClient();
 
 export default class FetchApi {
-    
+
     constructor(store) {
         console.info('init FetchApi', store)
         // makes standardized call and also updates system in standard way,
@@ -30,18 +30,18 @@ export default class FetchApi {
                 phaseImagesList: JSON.stringify(phaseImagesList)
             }
 
-            client.get('/browse/comments', browseInfo).then(
+            client.get('/get/comments', browseInfo).then(
                 (data) => {
 
-                    console.info('browse/comments', data, browseInfo);
-                    
+                    console.info('get/comments', data, browseInfo);
+
                     if (typeof data['ProjectComments'] != 'undefined' &&
                         data['ProjectComments'] != false) {
                         store.dispatch(browse.fetchProjectCommentsSuccessAction(data['ProjectComments'], projectId));
                     } else {
                         store.dispatch(browse.fetchProjectCommentsFailureAction(projectId));
                     }
-                    
+
                 }, (err) => {
                     //console.log(err);
                     store.dispatch(browse.fetchProjectCommentsFailureAction(projectId));
@@ -87,7 +87,7 @@ export default class FetchApi {
     //         }).catch((err) => {
     //             throw ['Users Read Error 211', err];
     //         });
-            
+
     //     } catch (err) {
     //         console.error(err);
     //         // this.context.mixpanel.track('web request error', { time: new Date(), errorData: err });

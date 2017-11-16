@@ -66,7 +66,7 @@ export default class Browse extends Component {
             userHash: this.props.userHash
         }
 
-        client.get('/browse/', browseInfo).then(
+        client.get('/get/projects/', browseInfo).then(
             (data) => {
                 if (typeof data['UserProjects'] == 'undefined') {
                     console.info('undefined response');
@@ -81,16 +81,16 @@ export default class Browse extends Component {
 
                     // ideal spot to fetch specific phases?
 
-                    client.get('/browse/users', browseInfo).then(
+                    client.get('/get/users', browseInfo).then(
                         (data) => {
 
-                            console.log('/browse/users', data);
+                            console.log('/get/users', data);
                             
                             if (typeof data['ProjectUsers'] != 'undefined' &&
                                 data['ProjectUsers'] != false) {
-                                
+
                                 this.props.fetchProjectUsersSuccessAction(data['ProjectUsers']);
-                                
+
                                 // let thisUser = new JefNode(data['ProjectUsers']).filter(function(node) {
                                 //     if (node.key == 'userHash' && node.value == userHash) {
                                 //         return node.parent.value;
@@ -102,11 +102,11 @@ export default class Browse extends Component {
                                 // ATTN: hot live reload go to page
                                 //this.props.push('/project/420');
                                 // this.props.push('/asset/424');
-                            
+
                             } else {
                                 this.props.fetchProjectUsersFailureAction();
                             }
-                            
+
                         }, (err) => {
                             console.log(err);
                             this.props.fetchProjectUsersFailureAction();
@@ -117,7 +117,7 @@ export default class Browse extends Component {
                     console.info('empty response');
                 }
             }, (err) => {
-                console.log(err);   
+                console.log(err);
             }
         );
 
@@ -136,8 +136,8 @@ export default class Browse extends Component {
 
         let listProjects, rowCount = 3, tileMargin = 70, blurImage;
         // let totalMargin = (rowCount + 1) * tileMargin, tileWidth = (width - totalMargin) / rowCount;
-        if (gotProjects) { 
-            
+        if (gotProjects) {
+
             if (Object.keys(userProjects).length > 0) {
 
                 let newProjects = deepcopy(userProjects);
@@ -148,7 +148,7 @@ export default class Browse extends Component {
                 listProjects = newProjects.map( project => {
                     if (project['finished'] == '1') {
 
-                        projCount++; 
+                        projCount++;
                         project['phaseImagesData'] = Object.keys(project['phaseImagesData']).map(x => project['phaseImagesData'][x]);
 
                         let projId = project['project_id'];
@@ -169,13 +169,13 @@ export default class Browse extends Component {
                             <View style={[styles.tileBox, { width: itemWidth, left: 25 } ]} key={'project' + projId}
                                 shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.2} shadowRadius={14}>
                                 <View style={styles.tileGridThing}>
-                                    <TouchableHighlight onPress={() => this.viewProject(projId)} data-project-id={projId} style={[styles.gridTile]} 
+                                    <TouchableHighlight onPress={() => this.viewProject(projId)} data-project-id={projId} style={[styles.gridTile]}
                                     activeOpacity={1} underlayColor="#F2F2F2">
                                         <View style={styles.tileContain}>
-                                            <Image 
-                                                style={[styles.tileThumbnail, { width: itemWidth }]} 
-                                                resizeMode="cover" 
-                                                source={{ uri: project['phaseImagesData'][0]['image_url'] }} 
+                                            <Image
+                                                style={[styles.tileThumbnail, { width: itemWidth }]}
+                                                resizeMode="cover"
+                                                source={{ uri: project['phaseImagesData'][0]['image_url'] }}
                                             />
                                             <View style={[styles.thumbnailContain, { width: itemWidth }]}></View>
                                             <View style={styles.tileInfo}>
@@ -190,7 +190,7 @@ export default class Browse extends Component {
 
                     }
                 });
-                
+
             } else {
                 listProjects = <View style={styles.noticeContain}><Text style={styles.noticeText}>You haven't joined or created any projects yet!</Text></View>
             }
@@ -200,7 +200,7 @@ export default class Browse extends Component {
         return (
             <View style={styles.body}>
                 <Image style={[styles.heroHeaderBlur, { zIndex: 1, position: 'absolute', width: width }]} source={{ uri: blurImage }} resizeMode="cover" />
-                
+
                 <View style={[styles.body, { zIndex: 4 }]}>
                     <HeroHeader
                         title={'Browse'}
@@ -210,13 +210,13 @@ export default class Browse extends Component {
                         )}
                         rightCtrls={(<View></View>)}
                     />
-                    <View style={[styles.heroShadow, { width: width } ]} 
+                    <View style={[styles.heroShadow, { width: width } ]}
                     shadowColor="#000000" shadowOffset={{width: 0, height: 1}} shadowOpacity={0.3} shadowRadius={9}></View>
                     <ScrollView style={[styles.browseList, { height: height, width: width }]} contentContainerStyle={styles.gridContain} horizontal={false} showsVerticalScrollIndicator={false} automaticallyAdjustContentInsets={false} contentInset={{top: 0, left: 0, bottom: 0, right: 0}} contentOffset={{x: 0, y: 0}}>
                         {listProjects}
                     </ScrollView>
                 </View>
-                
+
             </View>
         );
     }

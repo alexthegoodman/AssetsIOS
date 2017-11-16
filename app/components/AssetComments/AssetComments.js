@@ -51,10 +51,10 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 export default class AssetComments extends Component {
 
     constructor(props) {
-        
+
         super(props);
 
-        this.state = { 
+        this.state = {
             text: '',
             likes: {},
             showAllComments: false,
@@ -66,11 +66,11 @@ export default class AssetComments extends Component {
         // this.likeComment        = this.likeComment.bind(this);
         // this.showFewerComments  = this.showFewerComments.bind(this);
         // this.showAllComments    = this.showAllComments.bind(this);
-        
+
     }
 
     componentDidMount() {
-        
+
     }
 
     postComment() {
@@ -80,7 +80,7 @@ export default class AssetComments extends Component {
         if (self.state.text == '') {
 
             alert('No comment inserted!');
-        
+
         } else {
 
             Keyboard.dismiss();
@@ -101,7 +101,7 @@ export default class AssetComments extends Component {
                 (data) => {
 
                     console.log('/project/set/comment', data, commentInfo);
-                        
+
                     if (typeof data['CommentSet'] != 'undefined' &&
                         data['CommentSet'] != false) {
 
@@ -113,11 +113,11 @@ export default class AssetComments extends Component {
                                 phaseImagesList: JSON.stringify(phaseImagesList)
                             }
 
-                            client.get('/browse/comments', getInfo).then(
+                            client.get('/get/comments', getInfo).then(
                                 (data) => {
 
-                                    console.info('browse/comments', data, getInfo);
-                                    
+                                    console.info('get/comments', data, getInfo);
+
                                     if (typeof data['ProjectComments'] != 'undefined' &&
                                         data['ProjectComments'] != false) {
 
@@ -130,7 +130,7 @@ export default class AssetComments extends Component {
                                     } else {
                                         self.props.fetchProjectCommentsFailureAction(self.props.projId);
                                     }
-                                    
+
                                 }, (err) => {
                                     //console.log(err);
                                     self.props.fetchProjectCommentsFailureAction(self.props.projId);
@@ -141,7 +141,7 @@ export default class AssetComments extends Component {
                     } else {
                         alert('Comment could not posted! Error 2.');
                     }
-                    
+
                 }, (err) => {
                     console.log(err);
                     alert('Comment could not posted! Error 1.');
@@ -173,12 +173,12 @@ export default class AssetComments extends Component {
             }
         }
 
-        if (typeof this.state['likes'][comment['comment_id']] != 'undefined' && 
+        if (typeof this.state['likes'][comment['comment_id']] != 'undefined' &&
             this.state['likes'][comment['comment_id']] == userHash) {
             userLikes = true;
         }
 
-        // if (typeof this.state['dislikes'][comment['comment_id']] != 'undefined' && 
+        // if (typeof this.state['dislikes'][comment['comment_id']] != 'undefined' &&
         //     this.state['dislikes'][comment['comment_id']] == userHash) {
         //     userLikes = false;
         // }
@@ -207,11 +207,11 @@ export default class AssetComments extends Component {
             let authorFirst     = entities.decode(comment['comment_author_first']);
             let authorLast      = entities.decode(comment['comment_author_last']);
             let commentText     = entities.decode(comment['comment_text']);
-            
+
             // also strip p tags. if line breaks are the only html, then that could be erronous.
             commentText         = commentText.split('<p>').join('').split('</p>').join('');
             commentText         = commentText.split('<br />');
-            
+
             for(var i=0,l=commentText.length;i<l;i++){
                 if (commentText[i] != '') {
                     commentHtml += '<p>' + commentText[i] + '</p>';
@@ -227,7 +227,7 @@ export default class AssetComments extends Component {
 
             return (
                 <View style={[styles.commentItem, commentClass, { width: width }]} key={'comment' + comment['comment_id']}>
-                    
+
                     <View style={styles.commentMeta}>
                         <Text style={styles.commentTitle}>{authorFirst} {authorLast}</Text>
                         <Text style={styles.commentDate}>{dateFormat(commentDate, 'fullDate')}</Text>
@@ -273,7 +273,7 @@ export default class AssetComments extends Component {
                     commentList = imageComments.map( comment => {
 
                         commentCount++;
-                        
+
                         return buildComment(comment, commentCount, imageId);
 
                     });
@@ -297,11 +297,11 @@ export default class AssetComments extends Component {
         return (
 
             <View style={styles.assetComments}>
-                
+
                 {/*<KeyboardAvoidingView behavior="position" style={[styles.feedbackAvoidingView, { width: width }]}>*/}
                 <View style={[styles.invertedContainer, { width: width, height: this.props.commentViewHeight }]}>
                     <InvertibleScrollView style={[styles.commentList, { width: width, height: this.props.commentViewHeight } ]} contentContainerStyle={styles.commentsContain}
-                        horizontal={false} showsVerticalScrollIndicator={false} automaticallyAdjustContentInsets={false} 
+                        horizontal={false} showsVerticalScrollIndicator={false} automaticallyAdjustContentInsets={false}
                         contentInset={{top: 0, left: 0, bottom: 0, right: 0}} contentOffset={{x: 0, y: 0}} inverted>
                         <View style={[styles.formSpacer, {width:width}]}></View>
                         {commentList}
@@ -326,15 +326,15 @@ export default class AssetComments extends Component {
                             returnKeyType="done"
                             onSubmitEditing={this.postComment}
                         />
-                        <TouchableHighlight 
-                            onPress={this.postComment} style={[styles.formBtn]} 
+                        <TouchableHighlight
+                            onPress={this.postComment} style={[styles.formBtn]}
                             activeOpacity={1} underlayColor="#F2F2F2">
                             <Text style={styles.formBtnText}>{this.state.buttonText}</Text>
                         </TouchableHighlight>
                     </View>
                     <KeyboardSpacer topSpacing={-75} />
                 </View>
-                
+
             </View>
 
         );
