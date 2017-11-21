@@ -2,6 +2,32 @@
 	background-color: white;
 }
 
+.userInformation {
+	padding: 35 20;
+	border-bottom-color: $grey;
+	border-bottom-width: 1px;
+}
+
+.userName {
+	@extend .commonText;
+	font-size: 22px;
+	font-weight: 600;
+	margin-bottom: 4;
+}
+
+.userEmail {
+	@extend .commonText;
+	font-size: 16px;
+	margin-bottom: 5;
+	color: $black;
+}
+
+.userStat {
+	@extend .commonText;
+	font-size: 16px;
+	color: $black;
+}
+
 .settingsLink {
 	/*@extend .btn;*/
 	height: 70;

@@ -155,6 +155,7 @@ export default class Project extends Component {
                     <TouchableHighlight style={[styles.gridTile, { width: width } ]} key={key}
                         activeOpacity={1} underlayColor="#F2F2F2" onPress={() => this.viewAsset(image['image_id'])}>
                         <View style={styles.tileContain}>
+                            <Text style={[styles.loadingLabel, { width: itemWidth }]}>Loading...</Text>
                             <Image
                                 style={[styles.tileThumbnail, { width: itemWidth }]}
                                 resizeMode="cover"

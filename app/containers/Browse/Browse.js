@@ -19,7 +19,8 @@ import {
     Image,
     Dimensions,
     ScrollView,
-    AlertIOS
+    AlertIOS,
+    ActivityIndicator
 } from 'react-native';
 
 let { width, height } = Dimensions.get('window');
@@ -85,7 +86,7 @@ export default class Browse extends Component {
                         (data) => {
 
                             console.log('/get/users', data);
-                            
+
                             if (typeof data['ProjectUsers'] != 'undefined' &&
                                 data['ProjectUsers'] != false) {
 
@@ -172,6 +173,7 @@ export default class Browse extends Component {
                                     <TouchableHighlight onPress={() => this.viewProject(projId)} data-project-id={projId} style={[styles.gridTile]}
                                     activeOpacity={1} underlayColor="#F2F2F2">
                                         <View style={styles.tileContain}>
+                                            <Text style={[styles.loadingLabel, { width: itemWidth }]}>Loading...</Text>
                                             <Image
                                                 style={[styles.tileThumbnail, { width: itemWidth }]}
                                                 resizeMode="cover"
@@ -195,6 +197,16 @@ export default class Browse extends Component {
                 listProjects = <View style={styles.noticeContain}><Text style={styles.noticeText}>You haven't joined or created any projects yet!</Text></View>
             }
 
+        } else {
+          listProjects = (
+            <View style={styles.loadingContain}>
+              <ActivityIndicator
+                animating={true}
+                size="large"
+                color="#F26A7E"
+              />
+            </View>
+          )
         }
 
         return (

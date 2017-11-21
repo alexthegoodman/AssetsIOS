@@ -76,6 +76,20 @@ module.exports = StyleSheet.create({
         "color": "white",
         "backgroundColor": "transparent"
     },
+    "userName": {
+        "fontSize": 22,
+        "fontWeight": "600",
+        "marginBottom": 4
+    },
+    "userEmail": {
+        "fontSize": 16,
+        "marginBottom": 5,
+        "color": "#4B4B4B"
+    },
+    "userStat": {
+        "fontSize": 16,
+        "color": "#4B4B4B"
+    },
     "blockLabel": {
         "paddingTop": 0,
         "paddingRight": 0,
@@ -348,6 +362,9 @@ module.exports = StyleSheet.create({
     "browseList": {
         "backgroundColor": "white"
     },
+    "loadingContain": {
+        "paddingTop": 100
+    },
     "gridContain": {
         "paddingBottom": 30
     },
@@ -368,10 +385,21 @@ module.exports = StyleSheet.create({
     "tileContain": {
         "flex": 1,
         "borderRadius": 10,
-        "overflow": "hidden"
+        "overflow": "hidden",
+        "position": "relative"
     },
     "tileThumbnail": {
-        "height": 200
+        "height": 200,
+        "backgroundColor": "rgba(0, 0, 0, 0.05)"
+    },
+    "loadingLabel": {
+        "position": "absolute",
+        "top": 90,
+        "textAlign": "center",
+        "fontFamily": "Azo Sans",
+        "fontWeight": "600",
+        "fontSize": 16,
+        "color": "#D2D2D2"
     },
     "thumbnailContain": {
         "borderBottomWidth": 1,
@@ -567,6 +595,14 @@ module.exports = StyleSheet.create({
     },
     "settingsList": {
         "backgroundColor": "white"
+    },
+    "userInformation": {
+        "paddingTop": 35,
+        "paddingBottom": 35,
+        "paddingRight": 20,
+        "paddingLeft": 20,
+        "borderBottomColor": "#D2D2D2",
+        "borderBottomWidth": 1
     },
     "settingsLink": {
         "height": 70,

@@ -2,6 +2,11 @@
 	background-color: white;
 }
 
+.loadingContain {
+	padding-top: 100;
+
+}
+
 .gridContain {
 	/*flex: 1;*/
 	padding-bottom: 30;
@@ -30,13 +35,25 @@
 .tileContain {
 	/*flex-direction: row;
    	flex-wrap: wrap;*/
-   	flex: 1;
-   	border-radius: 10px;
-   	overflow: hidden;
+ 	flex: 1;
+ 	border-radius: 10px;
+ 	overflow: hidden;
+	position: relative;
 }
 
 .tileThumbnail {
 	height: 200;
+	background-color: rgba(0,0,0,0.05);
+}
+
+.loadingLabel {
+	position: absolute;
+	top: 90;
+	text-align: center;
+	font-family: $hFont;
+	font-weight: 600;
+	font-size: 16;
+	color: $grey;
 }
 
 .thumbnailContain {
@@ -102,4 +119,3 @@
 	line-height: 28;
 	flex: 1;
 }
-
