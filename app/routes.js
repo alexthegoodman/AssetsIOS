@@ -2,6 +2,7 @@ import React 				from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Entypo 					from 'react-native-vector-icons/Entypo';
 import SimpleLineIcons 			from 'react-native-vector-icons/SimpleLineIcons';
+const DeviceInfo      = require('react-native-device-info');
 
 import {
 	Animated,
@@ -20,6 +21,11 @@ import PhasePicker 		from './containers/PhasePicker/PhasePicker';
 import Asset 			from './containers/Asset/Asset';
 import InviteButton 			from './components/InviteButton/InviteButton';
 import ProjectPicker 			from './containers/ProjectPicker/ProjectPicker';
+
+let tabBarPadding = 10;
+if (DeviceInfo.getModel() == 'iPhone X') {
+	tabBarPadding = 5;
+}
 
 // may want to next Stack -> Tab -> Optional Stacks
 // position in stack should reflect what a nav will animate over/cover
@@ -124,7 +130,7 @@ const MainTabs = TabNavigator({
 			height: 70,
 			backgroundColor: '#E5E5E5',
 			paddingTop: 14,
-			paddingBottom: 10
+			paddingBottom: tabBarPadding
 		}
 		//inactiveTintColor
 		//showIcon

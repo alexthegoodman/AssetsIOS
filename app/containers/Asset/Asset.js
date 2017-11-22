@@ -87,7 +87,12 @@ export default class Project extends Component {
         console.info('thisAsset', this.refs.assetRank.state);
 
         /// 150 simpleheader
-        this.setState({ commentViewHeight: ((height - this.state.assetContentHeight) - this.refs.assetRank.state.rankHeight) - 80 });
+        let xHeight = 80;
+        if (DeviceInfo.getModel() == 'iPhone X') {
+          xHeight = 150; // extra for nav bar
+        }
+
+        this.setState({ commentViewHeight: ((height - this.state.assetContentHeight) - this.refs.assetRank.state.rankHeight) - xHeight });
 
         Image.getSize(thisAsset['image_url'], (width, height) => {
             this.setState({ thumbnailWidth: width, thumbnailHeight: height });
@@ -97,7 +102,7 @@ export default class Project extends Component {
 
     }
 
-    goBack() { 
+    goBack() {
         this.props.navigation.goBack();
     }
 
@@ -111,7 +116,7 @@ export default class Project extends Component {
         // console.info(currentProject['phaseImagesData'], assetId, this.state.orientation);
 
         let thumbnailPerc   =  this.state.thumbnailWidth / this.state.thumbnailHeight;
-        
+
         let thumbnailHeight = (this.state.assetContentHeight - 50);
         let thumbnailWidth  = thumbnailPerc * thumbnailHeight;
 
@@ -122,15 +127,22 @@ export default class Project extends Component {
         //     containStyles = { width: height, height: width, transform: [{ rotate: '90deg' }] };
         // }
 
+        let xHeight = 80, xPadding = 0, xTop = 20;
+        if (DeviceInfo.getModel() == 'iPhone X') {
+          xHeight = 110;
+          xPadding = 30;
+          xTop = 50;
+        }
+
         return (
             <View style={styles.body}>
-                <Image style={{ zIndex: 1, position: 'absolute', width: width, height: 80 }} source={{ uri: thisAsset['image_url'] }} />
+                <Image style={{ zIndex: 1, position: 'absolute', width: width, height: xHeight }} source={{ uri: thisAsset['image_url'] }} />
 
                 <View style={[styles.body, { zIndex: 4 }]}>
                     <SimpleHeader
                         title={thisAsset['image_name']}
                         leftCtrls={(
-                            <TouchableHighlight onPress={this.goBack} style={styles.headerLink} 
+                            <TouchableHighlight onPress={this.goBack} style={styles.headerLink}
                             activeOpacity={1} underlayColor="rgba(255,255,255,0.1)">
                                 <View style={styles.inlineContain}>
                                     <Back1 width={35} height={35} color="white" />
@@ -146,8 +158,8 @@ export default class Project extends Component {
                     <View style={[styles.assetContent, { width: width, height: this.state.assetContentHeight } ]}>
                         <View style={styles.assetContentContain}>
                             <View style={[styles.thumbnailContain, { width: thumbnailWidth, height: thumbnailHeight }]} shadowColor="#000000" shadowOffset={{width: 0, height: 0}} shadowOpacity={0.3} shadowRadius={10}>
-                                {/*<Lightbox 
-                                        onOpen={() => this.setState({ viewing: true })} 
+                                {/*<Lightbox
+                                        onOpen={() => this.setState({ viewing: true })}
                                         onClose={() => this.setState({ viewing: false })}
                                         backgroundColor="rgba(0, 0, 0, 0.7)"
                                         underlayColor="rgba(255, 255, 255, 0.3)">*/}
@@ -157,10 +169,10 @@ export default class Project extends Component {
                                         centerContent={true}
                                         decelerationRate={0.95}
                                         maximumZoomScale={10} minimumZoomScale={1} zoomScale={1.5}>
-                                        <Image 
-                                            style={[styles.assetThumbnail, thumbnailStyles ]} 
-                                            resizeMode="contain" 
-                                            source={{ uri: thisAsset['image_url'] }} 
+                                        <Image
+                                            style={[styles.assetThumbnail, thumbnailStyles ]}
+                                            resizeMode="contain"
+                                            source={{ uri: thisAsset['image_url'] }}
                                         />
                                     </ScrollView>
                                {/*</Lightbox>*/}

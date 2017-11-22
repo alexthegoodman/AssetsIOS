@@ -224,9 +224,15 @@ export default class Project extends Component {
 
         }
 
+        let xHeight = 80, xPadding = 0;
+        if (DeviceInfo.getModel() == 'iPhone X') {
+          xHeight = 110;
+          xPadding = 30;
+        }
+
         return (
             <View style={styles.body}>
-                <Image style={{ zIndex: 1, position: 'absolute', width: width, height: 80 }} source={{ uri: blurImage }} />
+                <Image style={{ zIndex: 1, position: 'absolute', width: width, height: xHeight }} source={{ uri: blurImage }} />
 
                 <View style={[styles.body, { zIndex: 4 }]}>
                     <SimpleHeader

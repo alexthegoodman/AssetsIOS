@@ -32,6 +32,7 @@ const deepcopy                      = require("deepcopy");
 const Entities                      = require('html-entities').XmlEntities;
 const entities                      = new Entities();
 const dateFormat                    = require('dateformat');
+const DeviceInfo                    = require('react-native-device-info');
 
 import HTMLView from 'react-native-htmlview';
 import InvertibleScrollView from 'react-native-invertible-scroll-view';
@@ -294,6 +295,11 @@ export default class AssetComments extends Component {
 
         //console.info('commentViewHeight', InvertibleScrollView, this.props.commentViewHeight)
 
+        let xHeight = -75;
+        if (DeviceInfo.getModel() == 'iPhone X') {
+          xHeight = -110; // extra for nav bar
+        }
+
         return (
 
             <View style={styles.assetComments}>
@@ -332,7 +338,7 @@ export default class AssetComments extends Component {
                             <Text style={styles.formBtnText}>{this.state.buttonText}</Text>
                         </TouchableHighlight>
                     </View>
-                    <KeyboardSpacer topSpacing={-75} />
+                    <KeyboardSpacer topSpacing={xHeight} />
                 </View>
 
             </View>

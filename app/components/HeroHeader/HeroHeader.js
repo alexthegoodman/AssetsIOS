@@ -25,6 +25,7 @@ const client                        = new ApiClient();
 const styles                        = require('../../css/style.js');
 const JefNode                       = require('json-easy-filter').JefNode;
 const deepcopy                      = require("deepcopy");
+const DeviceInfo                    = require('react-native-device-info');
 
 const { BlurView, VibrancyView } = require('react-native-blur');
 
@@ -43,13 +44,13 @@ export default class HeroHeader extends Component {
         let self = this;
 
         console.info('HeroHeader componentDidMount');
-        
+
     }
 
     render() {
 
         let { title, leftCtrls, rightCtrls, background, blurType } = this.props;
-        
+
         let backgroundColor = 'transparent';
         if (typeof background != 'undefined') {
             backgroundColor = background;
@@ -60,9 +61,14 @@ export default class HeroHeader extends Component {
             blurViewType = blurType;
         }
 
+        // let height, padding;
+        // if (DeviceInfo.getModel() == 'iPhone X') {
+        //
+        // }
+
         return (
             <View style={[styles.heroHeader, { backgroundColor: backgroundColor } ]}>
-                
+
                 <BlurView blurType={blurViewType} blurAmount={5} style={[styles.heroHeaderBlur, { width: width }]} />
 
                 <View style={styles.heroHeaderContain}>
